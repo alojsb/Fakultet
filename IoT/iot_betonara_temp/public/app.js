@@ -1,14 +1,17 @@
 // Database Paths
 var dataFloatPath = 'test/float';
 var dataIntPath = 'test/int';
+var dataBoolPath = 'test/bool';
 
 // Get a database reference
 const databaseFloat = database.ref(dataFloatPath);
 const databaseInt = database.ref(dataIntPath);
+const databaseBool = database.ref(dataBoolPath);
 
 // Variables to save database current values
 var floatReading;
 var intReading;
+var boolReading;
 
 // Attach an asynchronous callback to read the data
 databaseFloat.on(
@@ -34,3 +37,26 @@ databaseInt.on(
     console.log('The read failed: ' + errorObject.name);
   }
 );
+
+databaseBool.on(
+  'value',
+  (snapshot) => {
+    boolReading = snapshot.val();
+    console.log(boolReading);
+    document.getElementById('reading-bool').innerHTML = boolReading;
+  },
+  (errorObject) => {
+    console.log('The read failed: ' + errorObject.name);
+  }
+);
+
+function writeNewValue(path, val) {
+  firebase.database().ref(path).set(val);
+}
+
+function toggleBoolValue(path) {
+  console.log('path is ----> ' + path);
+  console.log('boolReading before is ----> ' + boolReading);
+  writeNewValue(path, !boolReading);
+  console.log('boolReading after is ----> ' + boolReading);
+}
