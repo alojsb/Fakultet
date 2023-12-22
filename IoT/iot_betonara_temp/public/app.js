@@ -1,5 +1,3 @@
-// Complete Project Details at: https://RandomNerdTutorials.com/
-
 // Database Paths
 var dataFloatPath = 'test/float';
 var dataIntPath = 'test/int';
