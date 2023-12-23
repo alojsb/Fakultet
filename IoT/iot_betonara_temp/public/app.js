@@ -50,13 +50,6 @@ databaseBool.on(
   }
 );
 
-function writeNewValue(path, val) {
-  firebase.database().ref(path).set(val);
-}
-
 function toggleBoolValue(path) {
-  console.log('path is ----> ' + path);
-  console.log('boolReading before is ----> ' + boolReading);
-  writeNewValue(path, !boolReading);
-  console.log('boolReading after is ----> ' + boolReading);
+  firebase.database().ref(path).set(!boolReading);
 }
