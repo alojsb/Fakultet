@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Betonara POC</title>
+  </head>
+  <body>
+    <!-- Zalihe -->
+    <h3>Zalihe komponenti betona</h3>
+    <div class="silos-container">
+      <!-- Silos cementa -->
+      <div class="silos">
+        <div class="silo-element">
+          <div class="led-container">
+            <div class="red led"></div>
+            <div class="off led"></div>
+            <div class="off led"></div>
+          </div>
+        </div>
+
+        <div class="silo-element silo-material">
+          <p>Cement</p>
+        </div>
+        <div class="silo-element">
+          <div class="gauge-container">
+            <div id="cement-gauge" class="gauge-indicator"></div>
+          </div>
+        </div>
+        <div class="silo-element stats">
+          <p>
+            <span id="cement_current"></span>
+            <span>/</span>
+            <span id="cement-cap"></span>
+            <span>kg</span>
+          </p>
+        </div>
+      </div>
+      <!-- Silos agregata 0-4 -->
+      <div class="silos">
+        <div class="silo-element">
+          <div class="led-container">
+            <div class="off led"></div>
+            <div class="yellow led"></div>
+            <div class="off led"></div>
+          </div>
+        </div>
+
+        <div class="silo-element silo-material">
+          <p>Agregat (0-4 mm)</p>
+        </div>
+        <div class="silo-element">
+          <div class="gauge-container">
+            <div id="agg-4-gauge" class="gauge-indicator"></div>
+          </div>
+        </div>
+        <div class="silo-element stats">
+          <p>
+            <span id="agg-4-amount"></span>
+            <span>/</span>
+            <span id="agg-4-cap"></span>
+            <span>kg</span>
+          </p>
+        </div>
+      </div>
+      <!-- Silos agregata 4-8 -->
+      <div class="silos">
+        <div class="silo-element">
+          <div class="led-container">
+            <div class="off led"></div>
+            <div class="yellow led"></div>
+            <div class="green led"></div>
+          </div>
+        </div>
+
+        <div class="silo-element silo-material">
+          <p>Agregat (4-8 mm)</p>
+        </div>
+        <div class="silo-element">
+          <div class="gauge-container">
+            <div id="agg-8-gauge" class="gauge-indicator"></div>
+          </div>
+        </div>
+        <div class="silo-element stats">
+          <p>
+            <span id="agg-8-amount"></span>
+            <span>/</span>
+            <span id="agg-8-cap"></span>
+            <span>kg</span>
+          </p>
+        </div>
+      </div>
+      <!-- Silos agregata 8-16 -->
+      <div class="silos">
+        <div class="silo-element">
+          <div class="led-container">
+            <div class="red led"></div>
+            <div class="yellow led"></div>
+            <div class="off led"></div>
+          </div>
+        </div>
+
+        <div class="silo-element silo-material">
+          <p>Agregat (8-16 mm)</p>
+        </div>
+        <div class="silo-element">
+          <div class="gauge-container">
+            <div id="agg-16-gauge" class="gauge-indicator"></div>
+          </div>
+        </div>
+        <div class="silo-element stats">
+          <p>
+            <span id="agg-16-amount"></span>
+            <span>/</span>
+            <span id="agg-16-cap"></span>
+            <span>kg</span>
+          </p>
+        </div>
+      </div>
+      <!-- Silos agregata 16-32 -->
+      <div class="silos">
+        <div class="silo-element">
+          <div class="led-container">
+            <div class="red led"></div>
+            <div class="off led"></div>
+            <div class="green led"></div>
+          </div>
+        </div>
+
+        <div class="silo-element silo-material">
+          <p>Agregat (16-32 mm)</p>
+        </div>
+        <div class="silo-element">
+          <div class="gauge-container">
+            <div id="agg-32-gauge" class="gauge-indicator"></div>
+          </div>
+        </div>
+        <div class="silo-element stats">
+          <p>
+            <span id="agg-32-amount"></span>
+            <span>/</span>
+            <span id="agg-32-cap"></span>
+            <span>kg</span>
+          </p>
+        </div>
+      </div>
+      <!-- Silos vode -->
+      <div class="silos">
+        <div class="silo-element">
+          <div class="led-container">
+            <div class="off led"></div>
+            <div class="off led"></div>
+            <div class="green led"></div>
+          </div>
+        </div>
+
+        <div class="silo-element silo-material">
+          <p>Voda</p>
+        </div>
+        <div class="silo-element">
+          <div class="gauge-container">
+            <div id="water-gauge" class="gauge-indicator"></div>
+          </div>
+        </div>
+        <div class="silo-element stats">
+          <p>
+            <span id="water-amount"></span>
+            <span>/</span>
+            <span id="water-cap"></span>
+            <span>kg</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Vaga -->
+    <h3>Vaga</h3>
+    <div class="great-container">
+      <table>
+        <tr>
+          <td>Predviđena zapremina betona (m^3)</td>
+          <td>
+            <input type="text" id="concrete_cube" placeholder="1" />
+          </td>
+        </tr>
+      </table>
+      <h4>Sadržaj vage</h4>
+      <table>
+        <tr>
+          <td>Cement</td>
+          <td id="cement_scale"></td>
+        </tr>
+        <tr>
+          <td>Agregat 0-4 mm</td>
+          <td id="agg_4_scale"></td>
+        </tr>
+        <tr>
+          <td>Agregat 4-8 mm</td>
+          <td id="agg_8_scale"></td>
+        </tr>
+        <tr>
+          <td>Agregat 8-16 mm</td>
+          <td id="agg_16_scale"></td>
+        </tr>
+        <tr>
+          <td>Agregat 16-32 mm</td>
+          <td id="agg_32_scale"></td>
+        </tr>
+        <tr>
+          <td>Voda</td>
+          <td id="water_scale"></td>
+        </tr>
+        <tr>
+          <td>Ukupno na vagi</td>
+          <td id="total_scale"></td>
+        </tr>
+      </table>
+    </div>
+    <!-- Pokretanje sekvence -->
+    <h3>Kontrola sekvence</h3>
+    <div>
+      <div id="startButton" class="main-btn start">START</div>
+    </div>
+    <div>
+      <div id="endButton" class="main-btn stop">STOP</div>
+    </div>
+    <!-- Marke betona -->
+    <h3>Marke betona</h3>
+    <div class="tab">
+      <button class="tablinks" onclick="openRecipe(event, 'M15')">M15</button>
+      <button class="tablinks" onclick="openRecipe(event, 'M20')">M20</button>
+      <button class="tablinks" onclick="openRecipe(event, 'M25')">M25</button>
+      <button class="tablinks" onclick="openRecipe(event, 'M30')">M30</button>
+    </div>
+    <!-- M15 -->
+    <div id="M15" class="tabcontent">
+      <h4>Opis</h4>
+      <div class="concrete-specs">
+        <table class="specs-table">
+          <tr>
+            <td>Nosivost na pritisak (MPa)</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>Omjer cementa i agregata (kg)</td>
+            <td>1:7</td>
+          </tr>
+          <tr>
+            <td>Omjer cementa i agregata (m^3)</td>
+            <td>1:4,5</td>
+          </tr>
+        </table>
+        <h4>Receptura</h4>
+        <table>
+          <tr>
+            <td>Cement (kg)</td>
+            <td id="cement_M15"></td>
+          </tr>
+          <tr>
+            <td>Agregat 0-4 mm (kg)</td>
+            <td id="agg_4_M15"></td>
+          </tr>
+          <tr>
+            <td>Agregat 4-8 mm (kg)</td>
+            <td id="agg_8_M15"></td>
+          </tr>
+          <tr>
+            <td>Agregat 8-16 mm (kg)</td>
+            <td id="agg_16_M15"></td>
+          </tr>
+          <tr>
+            <td>Agregat 16-32 mm (kg)</td>
+            <td id="agg_32_M15"></td>
+          </tr>
+          <tr>
+            <td>Voda (L)</td>
+            <td id="water_M15"></td>
+          </tr>
+          <tr>
+            <td>Težina betona (kg)</td>
+            <td id="concrete_weight_M15"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="M20" class="tabcontent">
+      <h3>Paris</h3>
+      <p>Paris is the capital of France.</p>
+    </div>
+
+    <div id="M25" class="tabcontent">
+      <h3>Tokyo</h3>
+      <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+    <div id="M30" class="tabcontent">
+      <h3>M30</h3>
+      <p>Tokyo is the capital of Japan.</p>
+    </div>
+  </body>
+</html>

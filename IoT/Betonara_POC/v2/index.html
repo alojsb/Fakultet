@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Betonara POC</title>
+  </head>
+  <body>
+    <header>
+      <h1>Betonara POC</h1>
+    </header>
+    <div class="controlboard">
+      <div class="silo-interface">
+        <div class="btn-container">
+          <div class="btn-label">
+            <p><span>Cement</span></p>
+            <br />
+            <p>
+              <span id="amount-cement">9124</span>
+              <span>kg</span>
+            </p>
+          </div>
+          <div class="led-container">
+            <div class="red led"></div>
+            <div class="off led"></div>
+            <div class="off led"></div>
+          </div>
+          <div class="silo-btn">PRESS</div>
+        </div>
+        <div class="silo-gauge">
+          <div id="gauge-cement" class="gauge-indicator"></div>
+        </div>
+      </div>
+      <div class="silo-interface">
+        <div class="btn-container">
+          <div class="btn-label">
+            <p>
+              <span>Agregat</span><br />
+              <span>(0 - 4 mm)</span>
+            </p>
+            <p>
+              <span id="amount-agg-4">8888</span>
+              <span>kg</span>
+            </p>
+          </div>
+          <div class="led-container">
+            <div class="off led"></div>
+            <div class="yellow led"></div>
+            <div class="off led"></div>
+          </div>
+          <div class="silo-btn">PRESS</div>
+        </div>
+        <div class="silo-gauge">
+          <div class="gauge-indicator"></div>
+        </div>
+      </div>
+      <div class="silo-interface">
+        <div class="btn-container">
+          <div class="btn-label">
+            <p>
+              <span>Agregat</span><br />
+              <span>(4 - 8 mm)</span>
+            </p>
+            <p>
+              <span id="amount-agg-8">5555</span>
+              <span>kg</span>
+            </p>
+          </div>
+          <div class="led-container">
+            <div class="off led"></div>
+            <div class="yellow led"></div>
+            <div class="green led"></div>
+          </div>
+          <div class="silo-btn">PRESS</div>
+        </div>
+        <div class="silo-gauge">
+          <div class="gauge-indicator"></div>
+        </div>
+      </div>
+      <div class="silo-interface">
+        <div class="btn-container">
+          <div class="btn-label">
+            <p>
+              <span>Agregat</span><br />
+              <span>(8 - 16 mm)</span>
+            </p>
+            <p>
+              <span id="amount-agg-16">4444</span>
+              <span>kg</span>
+            </p>
+          </div>
+          <div class="led-container">
+            <div class="red led"></div>
+            <div class="yellow led"></div>
+            <div class="off led"></div>
+          </div>
+          <div class="silo-btn">PRESS</div>
+        </div>
+        <div class="silo-gauge">
+          <div class="gauge-indicator"></div>
+        </div>
+      </div>
+      <div class="silo-interface">
+        <div class="btn-container">
+          <div class="btn-label">
+            <p>
+              <span>Agregat</span><br />
+              <span>(16 - 32 mm)</span>
+            </p>
+            <p>
+              <span id="amount-agg-32">7777</span>
+              <span>kg</span>
+            </p>
+          </div>
+          <div class="led-container">
+            <div class="red led"></div>
+            <div class="off led"></div>
+            <div class="green led"></div>
+          </div>
+          <div class="silo-btn">PRESS</div>
+        </div>
+        <div class="silo-gauge">
+          <div class="gauge-indicator"></div>
+        </div>
+      </div>
+      <div class="silo-interface">
+        <div class="btn-container">
+          <div class="btn-label">
+            <p>
+              <span>Voda</span><br />
+              <span>(tehnička)</span>
+            </p>
+            <p>
+              <span id="amount-water">7777</span>
+              <span>l</span>
+            </p>
+          </div>
+          <div class="led-container">
+            <div class="off led"></div>
+            <div class="off led"></div>
+            <div class="green led"></div>
+          </div>
+          <div class="silo-btn">PRESS</div>
+        </div>
+        <div class="silo-gauge">
+          <div class="gauge-indicator"></div>
+        </div>
+      </div>
+    </div>
+    <tab-container>
+      <!-- TAB CONTROLS -->
+      <input type="radio" id="tabToggle01" name="tabs" value="1" checked />
+      <label for="tabToggle01" checked="checked">TAB 01</label>
+      <input type="radio" id="tabToggle02" name="tabs" value="2" />
+      <label for="tabToggle02">TAB 02</label>
+      <input type="radio" id="tabToggle03" name="tabs" value="3" />
+      <label for="tabToggle03">TAB 03</label>
+      <input type="radio" id="tabToggle04" name="tabs" value="4" />
+      <label for="tabToggle04">TAB 04</label>
+      <tab-content>
+        <p>TAB [ <tab-number>01</tab-number> ] content</p>
+        <p>CSS...</p>
+      </tab-content>
+      <tab-content>
+        <p>TAB [ <tab-number>02</tab-number> ] content</p>
+        <p>CSS Grid...</p>
+      </tab-content>
+      <tab-content>
+        <p>TAB [ <tab-number>03</tab-number> ] content</p>
+        <p>CSS Grid is the...</p>
+      </tab-content>
+      <tab-content>
+        <p>TAB [ <tab-number>04</tab-number> ] content</p>
+        <p>CSS Grid is the future!</p>
+      </tab-content>
+    </tab-container>
+  </body>
+</html>

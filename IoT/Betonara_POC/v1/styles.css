@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.silo {
+  height: 280px;
+  width: 120px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  background: rgb(190, 190, 199);
+  background: linear-gradient(
+    90deg,
+    rgba(190, 190, 199, 1) 19%,
+    rgba(119, 119, 125, 1) 38%,
+    rgba(190, 190, 199, 1) 83%
+  );
+}
+
+.semaphore {
+  height: 48px;
+  width: 90%;
+  margin: auto;
+  border: 1px solid green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: rgb(84, 84, 87);
+  background: radial-gradient(
+    circle,
+    rgba(84, 84, 87, 1) 5%,
+    rgba(112, 112, 116, 1) 50%,
+    rgba(84, 84, 87, 1) 91%
+  );
+}
+
+.led-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.led {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+}
+
+.red {
+  background: rgb(228, 11, 19);
+  background: radial-gradient(
+    circle,
+    rgba(228, 11, 19, 1) 24%,
+    rgba(240, 130, 109, 1) 50%,
+    rgba(224, 75, 39, 1) 58%
+  );
+}
+
+.yellow {
+  background: rgb(217, 228, 11);
+  background: radial-gradient(
+    circle,
+    rgba(217, 228, 11, 1) 24%,
+    rgba(233, 240, 109, 1) 50%,
+    rgba(217, 228, 11, 1) 58%
+  );
+}
+
+.green {
+  background: rgb(11, 228, 13);
+  background: radial-gradient(
+    circle,
+    rgba(11, 228, 13, 1) 24%,
+    rgba(109, 240, 117, 1) 50%,
+    rgba(11, 228, 13, 1) 58%
+  );
+}
+
+.gauge-container {
+  border: 1px solid brown;
+  padding-right: 20px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: end;
+}
+
+.gauge {
+  border: 1px solid blue;
+  height: 200px;
+  width: 20px;
+  background-color: black;
+  border-radius: 2px;
+}
