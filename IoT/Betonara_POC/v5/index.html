@@ -32,7 +32,7 @@
           <div class="silo-element-group lower">
             <div class="silo-element">
               <div class="gauge-container">
-                <div id="cement-gauge" class="gauge-indicator"></div>
+                <div id="cement_gauge_silo" class="gauge-indicator"></div>
               </div>
             </div>
             <div class="silo-element stats">
@@ -236,30 +236,23 @@
         <h3>Vaga</h3>
       </div>
       <div class="great-container scale-container">
-        <!-- <div class="concrete-grade-container">
-          <div class="main-btn con-grade-btn">M15</div>
-          <div class="main-btn con-grade-btn">M20</div>
-          <div class="main-btn con-grade-btn">M25</div>
-          <div class="main-btn con-grade-btn">M30</div>
-        </div> -->
-
         <table class="scale-specs">
           <tr>
             <th>Marke betona</th>
           </tr>
           <tr>
-            <td><div class="main-btn con-grade-btn">M15</div></td>
+            <td><div id="btn_M15" class="main-btn con-grade-btn">M15</div></td>
           </tr>
           <tr>
             <td>
-              <div class="main-btn con-grade-btn">M20</div>
+              <div id="btn_M20" class="main-btn con-grade-btn">M20</div>
             </td>
           </tr>
           <tr>
-            <td><div class="main-btn con-grade-btn">M25</div></td>
+            <td><div id="btn_M25" class="main-btn con-grade-btn">M25</div></td>
           </tr>
           <tr>
-            <td><div class="main-btn con-grade-btn">M30</div></td>
+            <td><div id="btn_M30" class="main-btn con-grade-btn">M30</div></td>
           </tr>
         </table>
 
@@ -269,7 +262,7 @@
           </tr>
           <tr>
             <td>Cement (kg)</td>
-            <td id="cement_M15"></td>
+            <td id="cement_recipe"></td>
           </tr>
           <tr>
             <td>Agregat 0-4 mm (kg)</td>
@@ -302,31 +295,59 @@
             <th colspan="2">Sadržaj vage</th>
           </tr>
           <tr>
-            <td>Cement (kg)</td>
+            <td>
+              <div class="gauge-container">
+                <div id="cement_gauge_scale" class="gauge-indicator"></div>
+              </div>
+            </td>
             <td id="cement_scale"></td>
           </tr>
           <tr>
-            <td>Agregat 0-4 mm (kg)</td>
+            <td>
+              <div class="gauge-container">
+                <div id="cement-gauge" class="gauge-indicator"></div>
+              </div>
+            </td>
             <td id="agg_4_scale"></td>
           </tr>
           <tr>
-            <td>Agregat 4-8 mm (kg)</td>
+            <td>
+              <div class="gauge-container">
+                <div id="cement-gauge" class="gauge-indicator"></div>
+              </div>
+            </td>
             <td id="agg_8_scale"></td>
           </tr>
           <tr>
-            <td>Agregat 8-16 mm (kg)</td>
+            <td>
+              <div class="gauge-container">
+                <div id="cement-gauge" class="gauge-indicator"></div>
+              </div>
+            </td>
             <td id="agg_16_scale"></td>
           </tr>
           <tr>
-            <td>Agregat 16-32 mm (kg)</td>
+            <td>
+              <div class="gauge-container">
+                <div id="cement-gauge" class="gauge-indicator"></div>
+              </div>
+            </td>
             <td id="agg_32_scale"></td>
           </tr>
           <tr>
-            <td>Voda (L)</td>
+            <td>
+              <div class="gauge-container">
+                <div id="cement-gauge" class="gauge-indicator"></div>
+              </div>
+            </td>
             <td id="water_scale"></td>
           </tr>
           <tr>
-            <td>Ukupna težina betona (kg)</td>
+            <td>
+              <div class="gauge-container">
+                <div id="cement_gauge_scale" class="gauge-indicator"></div>
+              </div>
+            </td>
             <td id="total_scale"></td>
           </tr>
         </table>

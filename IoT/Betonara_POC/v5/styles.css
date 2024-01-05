@@ -286,6 +286,14 @@ body {
   background-color: rgb(255, 145, 0);
 }
 
+.on {
+  border-top: 12px solid rgb(243, 250, 49);
+  border-right: 12px solid rgb(255, 251, 26);
+  border-bottom: 12px solid rgb(206, 189, 4);
+  border-left: 12px solid rgb(228, 228, 3);
+  background-color: rgb(255, 238, 0);
+}
+
 .scale-specs,
 .scale-specs th,
 .scale-specs td {
