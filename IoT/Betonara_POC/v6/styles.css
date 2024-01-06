@@ -1,0 +1,347 @@
+body {
+  font-family: Arial;
+  box-sizing: border-box;
+  background-color: papayawhip;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.great-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.compartment-title {
+  width: calc(90% + 16px);
+  display: flex;
+  align-items: left;
+}
+
+.great-container {
+  border: 1px solid #ccc;
+  width: 90%;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: rgb(205, 205, 194);
+  background: linear-gradient(
+    115deg,
+    rgba(205, 205, 194, 1) 16%,
+    rgba(145, 145, 140, 1) 24%,
+    rgba(153, 153, 146, 1) 34%,
+    rgba(212, 212, 202, 1) 38%,
+    rgba(162, 162, 151, 1) 41%,
+    rgba(106, 106, 102, 1) 47%,
+    rgba(126, 126, 120, 1) 58%,
+    rgba(204, 204, 190, 1) 66%,
+    rgba(159, 159, 151, 1) 69%,
+    rgba(173, 173, 164, 1) 79%,
+    rgba(142, 142, 133, 1) 83%
+  );
+}
+
+.silos-container {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.silo {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+.dynamic-screen {
+  background-color: rgb(18, 18, 18);
+  color: chartreuse;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.silo-element {
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+}
+
+.silo-element-group {
+  display: flex;
+}
+
+.led-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100px;
+  height: 40px;
+}
+
+.led {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  margin: 0 3px;
+}
+
+.led:first-child {
+  margin-left: 0;
+}
+
+.led:last-child {
+  margin-right: 0;
+}
+
+.red {
+  background: rgb(228, 11, 19);
+  background: radial-gradient(
+    circle,
+    rgba(228, 11, 19, 1) 24%,
+    rgba(240, 130, 109, 1) 50%,
+    rgba(224, 75, 39, 1) 58%
+  );
+}
+
+.yellow {
+  background: rgb(217, 228, 11);
+  background: radial-gradient(
+    circle,
+    rgba(217, 228, 11, 1) 24%,
+    rgba(233, 240, 109, 1) 50%,
+    rgba(217, 228, 11, 1) 58%
+  );
+}
+
+.green {
+  background: rgb(11, 228, 13);
+  background: radial-gradient(
+    circle,
+    rgba(11, 228, 13, 1) 24%,
+    rgba(109, 240, 117, 1) 50%,
+    rgba(11, 228, 13, 1) 58%
+  );
+}
+
+.off {
+  background: rgb(50, 50, 49);
+  background: radial-gradient(
+    circle,
+    rgba(50, 50, 49, 1) 24%,
+    rgba(106, 106, 102, 1) 50%,
+    rgba(50, 50, 49, 1) 58%
+  );
+}
+
+.gauge-container {
+  min-width: 98px;
+  height: 20px;
+  border: 1px solid #ccc;
+}
+
+.gauge-indicator {
+  background-color: aqua;
+  height: 20px;
+  max-width: 100px;
+}
+
+.stats,
+.silo-material {
+  min-width: 144px;
+}
+
+.concrete-cubic-container {
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.concrete-cubic-container > p {
+  margin: 8px;
+}
+
+.controls-container {
+  margin: 8px;
+}
+
+.descriptor-column {
+  max-width: 180px;
+}
+
+.descriptor-column p {
+  margin: 0;
+}
+
+.indicator-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-small {
+  height: 24px;
+  width: 20px;
+  border-top: 8px solid rgb(250, 173, 49);
+  border-right: 8px solid rgb(255, 171, 26);
+  border-bottom: 8px solid rgb(206, 115, 4);
+  border-left: 8px solid rgb(228, 134, 3);
+  background-color: rgb(255, 145, 0);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls-container tr td input {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  font-size: larger;
+  margin: 0 4px;
+}
+
+.process-status {
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+}
+
+.btn-container {
+  margin: 8px;
+  min-width: 160px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.process-container {
+  display: flex;
+}
+
+.controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-btn {
+  width: 50px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: white;
+  cursor: pointer;
+}
+
+.start {
+  border-top: 12px solid rgb(40, 115, 23);
+  border-right: 12px solid rgb(29, 164, 19);
+  border-bottom: 12px solid rgb(3, 120, 42);
+  border-left: 12px solid rgb(5, 200, 67);
+  background-color: rgb(4, 179, 42);
+}
+
+.stop {
+  border-top: 12px solid rgb(250, 49, 49);
+  border-right: 12px solid rgb(255, 26, 26);
+  border-bottom: 12px solid rgb(206, 4, 4);
+  border-left: 12px solid rgb(228, 3, 3);
+  background-color: red;
+}
+
+.con-grade-btn {
+  border-top: 12px solid rgb(250, 173, 49);
+  border-right: 12px solid rgb(255, 171, 26);
+  border-bottom: 12px solid rgb(206, 115, 4);
+  border-left: 12px solid rgb(228, 134, 3);
+  background-color: rgb(255, 145, 0);
+}
+
+.on {
+  border-top: 12px solid rgb(243, 250, 49);
+  border-right: 12px solid rgb(255, 251, 26);
+  border-bottom: 12px solid rgb(206, 189, 4);
+  border-left: 12px solid rgb(228, 228, 3);
+  background-color: rgb(255, 238, 0);
+}
+
+.scale-specs,
+.scale-specs th,
+.scale-specs td {
+  border: 1px solid aqua;
+  border-collapse: collapse;
+}
+
+.specs-table {
+  text-align: left;
+}
+
+.scale-container {
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.scale-title {
+  height: 21px;
+}
+
+.recipe-label {
+  min-width: 90px;
+}
+
+.recipe-value {
+  min-width: 45px;
+  text-align: right;
+}
+
+.scale-value {
+  min-width: 45px;
+  text-align: right;
+}
+
+.test1 {
+  background-color: firebrick;
+  width: 200px;
+  height: 100px;
+}
+
+.test2 {
+  background-color: gold;
+  width: 200px;
+  height: 100px;
+}
+
+/* ONLY FOR 6 SILOS */
+/* @media only screen and (max-width: 1920px) {
+  .silo {
+    max-width: 25%;
+  }
+}
+
+@media only screen and (max-width: 1480px) {
+  .silo {
+    max-width: 33%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .silo {
+    max-width: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .silo {
+    max-width: 100%;
+  }
+} */
