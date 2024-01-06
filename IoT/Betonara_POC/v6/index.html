@@ -119,7 +119,7 @@
             <tr class="process-activity-row">
               <td><p>Proces sipanja:</p></td>
               <td>
-                <div class="dynamic-screen process-status">Isključen</div>
+                <div id="process_status" class="dynamic-screen">Isključen</div>
               </td>
             </tr>
             <tr class="concrete-cubic-row">
@@ -127,9 +127,9 @@
                 <p>Predviđena zapremina betona (m^3):</p>
               </td>
               <td class="indicator-column">
-                <div class="btn-small">-</div>
-                <input type="text" id="concrete_cube" placeholder="1" />
-                <div class="btn-small">+</div>
+                <div id="cubic_minus" class="btn-small">-</div>
+                <div id="cubic_amount" class="dynamic-screen">1</div>
+                <div id="cubic_plus" class="btn-small">+</div>
               </td>
             </tr>
           </table>
@@ -152,11 +152,12 @@
       <div class="great-container scale-container">
         <!-- Beton segment -->
         <table class="scale-specs">
-          <tr>
-            <th>Beton</th>
-          </tr>
-          <tr>
-            <td><div id="btn_M15" class="main-btn con-grade-btn">M15</div></td>
+          <tr rowspan="2">
+            <td>
+              <div id="pour_concrete_btn" class="main-btn concrete-btn">
+                Isprazni
+              </div>
+            </td>
           </tr>
         </table>
         <!-- Receptura segment -->
@@ -169,7 +170,7 @@
             <td id="cement_recipe" class="recipe-value"></td>
           </tr>
           <tr>
-            <td>Agregat</td>
+            <td>Agregat (kg)</td>
             <td id="agg_4_recipe" class="recipe-value"></td>
           </tr>
 
