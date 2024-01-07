@@ -1,8 +1,8 @@
 // screen width display
-document.getElementById('display_screen_width').innerText = window.innerWidth;
-addEventListener('resize', (event) => {
-  document.getElementById('display_screen_width').innerText = window.innerWidth;
-});
+// document.getElementById('display_screen_width').innerText = window.innerWidth;
+// addEventListener('resize', (event) => {
+//   document.getElementById('display_screen_width').innerText = window.innerWidth;
+// });
 
 // will be defined in firebase reatime database
 // ############## SILO STATS #############
@@ -10,7 +10,7 @@ let cement_current = 4000;
 let cement_capacity = 5000;
 let agg_4_current = 10000;
 let agg_4_capacity = 15000;
-let water_current = 2333;
+let water_current = 2330;
 let water_capacity = 3000;
 
 // ############## SILO GAUGE DISPLAY #############
@@ -221,43 +221,70 @@ setInterval(() => {
 // pour concrete - empty scale
 let pour_concrete_btn = document.getElementById('pour_concrete_btn');
 
-function pourConcrete() {
-  let pourOut = setInterval(() => {
-    if (cement_scale > 0) {
-      cement_scale -= 10;
-      document.getElementById('cement_scale').innerText = cement_scale;
-      document.getElementById('cement_gauge_scale').style.width =
-        Math.floor((cement_scale / req_cement) * 100) + '%';
-      total_scale -= 10;
-      document.getElementById('total_scale').innerText = total_scale;
-      document.getElementById('total_gauge_scale').style.width =
-        Math.floor((total_scale / req_total) * 100) + '%';
-    } else if (agg_4_scale > 0) {
-      agg_4_scale -= 10;
-      document.getElementById('agg_4_scale').innerText = agg_4_scale;
-      document.getElementById('agg_4_gauge_scale').style.width =
-        Math.floor((agg_4_scale / req_agg_4) * 100) + '%';
-      total_scale -= 10;
-      document.getElementById('total_scale').innerText = total_scale;
-      document.getElementById('total_gauge_scale').style.width =
-        Math.floor((total_scale / req_total) * 100) + '%';
-    } else if (water_scale > 0) {
-      water_scale -= 10;
-      document.getElementById('water_scale').innerText = water_scale;
-      document.getElementById('water_gauge_scale').style.width =
-        Math.floor((water_scale / req_water) * 100) + '%';
-      total_scale -= 10;
-      document.getElementById('total_scale').innerText = total_scale;
-      document.getElementById('total_gauge_scale').style.width =
-        Math.floor((total_scale / req_total) * 100) + '%';
-    } else {
-      clearInterval(pourOut);
-    }
-  }, 100);
-}
-
 pour_concrete_btn.addEventListener('click', () => {
   if (!sequenceOn) {
-    pourConcrete();
+    let pourOut = setInterval(() => {
+      if (cement_scale > 0) {
+        cement_scale -= 10;
+        document.getElementById('cement_scale').innerText = cement_scale;
+        document.getElementById('cement_gauge_scale').style.width =
+          Math.floor((cement_scale / req_cement) * 100) + '%';
+        total_scale -= 10;
+        document.getElementById('total_scale').innerText = total_scale;
+        document.getElementById('total_gauge_scale').style.width =
+          Math.floor((total_scale / req_total) * 100) + '%';
+      } else if (agg_4_scale > 0) {
+        agg_4_scale -= 10;
+        document.getElementById('agg_4_scale').innerText = agg_4_scale;
+        document.getElementById('agg_4_gauge_scale').style.width =
+          Math.floor((agg_4_scale / req_agg_4) * 100) + '%';
+        total_scale -= 10;
+        document.getElementById('total_scale').innerText = total_scale;
+        document.getElementById('total_gauge_scale').style.width =
+          Math.floor((total_scale / req_total) * 100) + '%';
+      } else if (water_scale > 0) {
+        water_scale -= 10;
+        document.getElementById('water_scale').innerText = water_scale;
+        document.getElementById('water_gauge_scale').style.width =
+          Math.floor((water_scale / req_water) * 100) + '%';
+        total_scale -= 10;
+        document.getElementById('total_scale').innerText = total_scale;
+        document.getElementById('total_gauge_scale').style.width =
+          Math.floor((total_scale / req_total) * 100) + '%';
+      } else {
+        clearInterval(pourOut);
+      }
+    }, 100);
+  }
+});
+
+// refill silos
+let refill = document.getElementById('refill');
+
+refill.addEventListener('click', () => {
+  if (!sequenceOn) {
+    let fillUpSilos = setInterval(() => {
+      if (cement_current < cement_capacity) {
+        // add to silo
+        cement_current += 10;
+        document.getElementById('cement_current').innerText = cement_current;
+        document.getElementById('cement_gauge_silo').style.width =
+          (cement_current / cement_capacity) * 100 + '%';
+      } else if (agg_4_current < agg_4_capacity) {
+        // remove from silo
+        agg_4_current += 10;
+        document.getElementById('agg_4_current').innerText = agg_4_current;
+        document.getElementById('agg_4_gauge_silo').style.width =
+          (agg_4_current / agg_4_capacity) * 100 + '%';
+      } else if (water_current < water_capacity) {
+        // remove from silo
+        water_current += 10;
+        document.getElementById('water_current').innerText = water_current;
+        document.getElementById('water_gauge_silo').style.width =
+          (water_current / water_capacity) * 100 + '%';
+      } else {
+        clearInterval(fillUpSilos);
+      }
+    }, 100);
   }
 });
