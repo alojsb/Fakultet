@@ -149,80 +149,121 @@
       <div class="compartment-title">
         <h3>Vaga</h3>
       </div>
-      <div class="great-container scale-container">
-        <!-- Beton segment -->
-        <table class="scale-specs">
-          <tr rowspan="2">
-            <td>
-              <div id="pour_concrete_btn" class="main-btn concrete-btn">
-                Isprazni
-              </div>
-            </td>
-          </tr>
-        </table>
-        <!-- Receptura segment -->
-        <table class="scale-specs">
-          <tr>
-            <th colspan="2" class="scale-title">Receptura</th>
-          </tr>
-          <tr>
-            <td class="recipe-label">Cement (kg)</td>
-            <td id="cement_recipe" class="recipe-value"></td>
-          </tr>
-          <tr>
-            <td>Agregat (kg)</td>
-            <td id="agg_4_recipe" class="recipe-value"></td>
-          </tr>
+      <div class="great-container">
+        <div class="scale-container">
+          <!-- Beton segment -->
+          <div class="table-container">
+            <table class="scale-specs">
+              <tr rowspan="2">
+                <td>
+                  <div
+                    id="pour_concrete_btn"
+                    class="main-btn concrete-btn side-btn"
+                  >
+                    KIPAJ
+                  </div>
+                  <div
+                    id="stop_concrete_btn"
+                    class="main-btn concrete-btn side-btn"
+                  >
+                    PREKID
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- Receptura segment -->
+          <div class="table-container">
+            <table class="scale-specs">
+              <tr>
+                <th colspan="2" class="scale-title">Receptura</th>
+              </tr>
+              <tr>
+                <td class="recipe-label">Cement (kg)</td>
+                <td
+                  id="cement_recipe"
+                  class="recipe-value recipe-digital-display"
+                ></td>
+              </tr>
+              <tr>
+                <td>Agregat (kg)</td>
+                <td
+                  id="agg_4_recipe"
+                  class="recipe-value recipe-digital-display"
+                ></td>
+              </tr>
 
-          <tr>
-            <td>Voda (L)</td>
-            <td id="water_recipe" class="recipe-value"></td>
-          </tr>
-          <tr>
-            <td>Ukupno (kg)</td>
-            <td id="concrete_weight_recipe" class="recipe-value"></td>
-          </tr>
-        </table>
-        <!-- Sadržaj vage segment -->
-        <table class="scale-specs">
-          <tr>
-            <th colspan="2" class="scale-title">Sadržaj vage</th>
-          </tr>
-          <tr>
-            <td>
-              <div class="gauge-container">
-                <div id="cement_gauge_scale" class="gauge-indicator"></div>
-              </div>
-            </td>
-            <td id="cement_scale" class="scale-value"></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="gauge-container">
-                <div id="agg_4_gauge_scale" class="gauge-indicator"></div>
-              </div>
-            </td>
-            <td id="agg_4_scale" class="scale-value"></td>
-          </tr>
+              <tr>
+                <td>Voda (L)</td>
+                <td
+                  id="water_recipe"
+                  class="recipe-value recipe-digital-display"
+                ></td>
+              </tr>
+              <tr>
+                <td>Ukupno (kg)</td>
+                <td
+                  id="concrete_weight_recipe"
+                  class="recipe-value recipe-digital-display"
+                ></td>
+              </tr>
+            </table>
+          </div>
+          <!-- Sadržaj vage segment -->
+          <div class="table-container">
+            <table class="scale-specs">
+              <tr>
+                <th colspan="2" class="scale-title">Sadržaj vage</th>
+              </tr>
+              <tr>
+                <td class="scale-digital-display">
+                  <div class="gauge-container">
+                    <div id="cement_gauge_scale" class="gauge-indicator"></div>
+                  </div>
+                </td>
+                <td
+                  id="cement_scale"
+                  class="scale-value scale-digital-display"
+                ></td>
+              </tr>
+              <tr>
+                <td class="scale-digital-display">
+                  <div class="gauge-container">
+                    <div id="agg_4_gauge_scale" class="gauge-indicator"></div>
+                  </div>
+                </td>
+                <td
+                  id="agg_4_scale"
+                  class="scale-value scale-digital-display"
+                ></td>
+              </tr>
 
-          <tr>
-            <td>
-              <div class="gauge-container">
-                <div id="water_gauge_scale" class="gauge-indicator"></div>
-              </div>
-            </td>
-            <td id="water_scale" class="scale-value"></td>
-          </tr>
+              <tr>
+                <td class="scale-digital-display">
+                  <div class="gauge-container">
+                    <div id="water_gauge_scale" class="gauge-indicator"></div>
+                  </div>
+                </td>
+                <td
+                  id="water_scale"
+                  class="scale-value scale-digital-display"
+                ></td>
+              </tr>
 
-          <tr>
-            <td>
-              <div class="gauge-container">
-                <div id="total_gauge_scale" class="gauge-indicator"></div>
-              </div>
-            </td>
-            <td id="total_scale" class="scale-value"></td>
-          </tr>
-        </table>
+              <tr>
+                <td class="scale-digital-display">
+                  <div class="gauge-container">
+                    <div id="total_gauge_scale" class="gauge-indicator"></div>
+                  </div>
+                </td>
+                <td
+                  id="total_scale"
+                  class="scale-value scale-digital-display"
+                ></td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </body>
