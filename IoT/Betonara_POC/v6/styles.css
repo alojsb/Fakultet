@@ -151,7 +151,7 @@ body {
 
 .stats,
 .silo-material {
-  min-width: 144px;
+  min-width: 148px;
 }
 
 .concrete-cubic-container {
@@ -243,6 +243,10 @@ body {
   cursor: pointer;
 }
 
+.side-btn {
+  margin: 12px 0;
+}
+
 .start {
   border-top: 12px solid rgb(40, 115, 23);
   border-right: 12px solid rgb(29, 164, 19);
@@ -275,11 +279,15 @@ body {
   background-color: rgb(255, 238, 0);
 }
 
-.scale-specs,
-.scale-specs th,
+/* .scale-specs,
+.scale-specs tr,
 .scale-specs td {
   border: 1px solid aqua;
   border-collapse: collapse;
+} */
+
+.scale-specs tr {
+  height: 25px;
 }
 
 .specs-table {
@@ -287,8 +295,13 @@ body {
 }
 
 .scale-container {
+  display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  padding: 8px;
+}
+
+.table-container {
+  margin: 8px;
 }
 
 .scale-title {
@@ -300,13 +313,25 @@ body {
 }
 
 .recipe-value {
-  min-width: 45px;
+  min-width: 49px;
   text-align: right;
 }
 
+.recipe-digital-display {
+  background-color: rgb(18, 18, 18);
+  color: darkorange;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .scale-value {
-  min-width: 45px;
+  min-width: 49px;
   text-align: right;
+}
+
+.scale-digital-display {
+  background-color: rgb(18, 18, 18);
+  color: chartreuse;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .test1 {
