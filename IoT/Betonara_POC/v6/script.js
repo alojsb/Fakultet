@@ -279,7 +279,7 @@ let pour_concrete_btn = document.getElementById('pour_concrete_btn');
 let pourOut;
 
 pour_concrete_btn.addEventListener('click', () => {
-  if (!sequenceOn) {
+  if (sequenceOn == false && scaleEmptyingOn == false) {
     console.log('pouring concrete out of the scale');
     scaleEmptyingOn = true;
     pourOut = setInterval(() => {

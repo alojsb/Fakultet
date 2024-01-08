@@ -8,7 +8,20 @@
     <title>Betonara POC</title>
   </head>
   <body>
-    <div id="refill">Refill</div>
+    <div class="great-wrapper">
+      <div class="compartment-title">
+        <h3>Punjenje silosa</h3>
+      </div>
+      <div class="great-container refill-container">
+        <div id="refill_leds" class="led-container dynamic-screen">
+          <div class="red led"></div>
+          <div class="off led"></div>
+          <div class="green led"></div>
+        </div>
+        <div id="refill" class="main-btn concrete-btn">NAPUNI</div>
+      </div>
+    </div>
+
     <!-- Zalihe -->
     <div class="great-wrapper">
       <div class="compartment-title">
@@ -57,7 +70,7 @@
               </div>
             </div>
             <div class="silo-element silo-material">
-              <p>Agregat 0-4 mm</p>
+              <p>Agregat 0-32 mm</p>
             </div>
           </div>
           <div class="silo-element-group lower">
@@ -155,7 +168,12 @@
           <div class="table-container">
             <table class="scale-specs">
               <tr rowspan="2">
-                <td>
+                <td class="scale-commands">
+                  <div id="pouring_leds" class="led-container dynamic-screen">
+                    <div class="red led"></div>
+                    <div class="yellow led"></div>
+                    <div class="green led"></div>
+                  </div>
                   <div
                     id="pour_concrete_btn"
                     class="main-btn concrete-btn side-btn"
