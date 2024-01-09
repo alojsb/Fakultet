@@ -177,19 +177,9 @@ body {
   min-width: 148px;
 }
 
-.concrete-cubic-container {
-  margin: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.concrete-cubic-container > p {
-  margin: 8px;
-}
-
 .controls-container {
   margin: 8px;
+  margin-top: 0;
 }
 
 .descriptor-column {
@@ -244,10 +234,6 @@ body {
   align-items: center;
 }
 
-.process-container {
-  display: flex;
-}
-
 .controls-wrapper {
   display: flex;
   flex-direction: column;
@@ -294,20 +280,8 @@ body {
   background-color: rgb(255, 145, 0);
 }
 
-.on {
-  border-top: 12px solid rgb(243, 250, 49);
-  border-right: 12px solid rgb(255, 251, 26);
-  border-bottom: 12px solid rgb(206, 189, 4);
-  border-left: 12px solid rgb(228, 228, 3);
-  background-color: rgb(255, 238, 0);
-}
-
 .scale-specs tr {
   height: 25px;
-}
-
-.specs-table {
-  text-align: left;
 }
 
 .scale-container {
@@ -356,39 +330,17 @@ body {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.test1 {
-  background-color: firebrick;
-  width: 200px;
-  height: 100px;
+.notification-wrapper {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  min-width: 400px;
 }
 
-.test2 {
-  background-color: gold;
-  width: 200px;
-  height: 100px;
+.notification-box {
+  box-sizing: border-box;
+  border: 1px solid rgb(34, 32, 32);
+  background-color: rgba(186, 176, 119, 0.7);
+  padding: 8px;
+  margin: 16px 0;
 }
-
-/* ONLY FOR 6 SILOS */
-/* @media only screen and (max-width: 1920px) {
-  .silo {
-    max-width: 25%;
-  }
-}
-
-@media only screen and (max-width: 1480px) {
-  .silo {
-    max-width: 33%;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .silo {
-    max-width: 60%;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .silo {
-    max-width: 100%;
-  }
-} */

@@ -1,9 +1,3 @@
-// screen width display
-// document.getElementById('display_screen_width').innerText = window.innerWidth;
-// addEventListener('resize', (event) => {
-//   document.getElementById('display_screen_width').innerText = window.innerWidth;
-// });
-
 // will be defined in firebase reatime database
 // ############## SILO STATS #############
 let cement_current = 5000;
@@ -59,9 +53,9 @@ document.getElementById('water_recipe').innerText = req_water;
 document.getElementById('concrete_weight_recipe').innerText = req_total;
 
 // ############## SCALE STATS #############
-let cement_scale = 50;
-let agg_4_scale = 25000;
-let water_scale = 80;
+let cement_scale = 0;
+let agg_4_scale = 0;
+let water_scale = 0;
 let total_scale = cement_scale + agg_4_scale + water_scale;
 
 // ############## SCALE DISPLAY #############
@@ -133,6 +127,9 @@ cubic_minus.addEventListener('click', () => {
       console.log(
         'decreasing the cubic volume amount not allowed until the scale is emptied'
       );
+      createNotification(
+        'Trenutno nije moguće promijeniti ovu vrijednost, jer je drugi proces u toku.'
+      );
     }
   } else {
     if (
@@ -145,6 +142,9 @@ cubic_minus.addEventListener('click', () => {
     } else {
       console.log(
         'cannot change this value while one of these processes is active: refill, main pouring sequence, emptying of the scale'
+      );
+      createNotification(
+        'Trenutno nije moguće promijeniti ovu vrijednost, jer je drugi proces u toku.'
       );
     }
   }
@@ -172,6 +172,9 @@ cubic_plus.addEventListener('click', () => {
       console.log(
         'cannot change this value while one of these processes is active: refill, main pouring sequence, emptying of the scale'
       );
+      createNotification(
+        'Trenutno nije moguće promijeniti ovu vrijednost, jer je drugi proces u toku.'
+      );
     }
   }
 });
@@ -185,10 +188,12 @@ function toggleMainSequence(status) {
     sequenceOn = true;
     document.getElementById('process_status').innerText = 'Aktivan';
     console.log('pouring sequence on');
+    createNotification('Glavna sekvenca sipanja započeta.');
   } else {
     sequenceOn = false;
     document.getElementById('process_status').innerText = 'Isključen';
     console.log('pouring sequence off');
+    createNotification('Glavna sekvenca sipanja obustavljena.');
   }
 }
 
@@ -201,6 +206,8 @@ startButton.addEventListener('click', () => {
 endBUtton.addEventListener('click', () => {
   if (sequenceOn == true) {
     toggleMainSequence(sequenceOn);
+  } else {
+    createNotification('Glavna sekvenca sipanja nije u toku.');
   }
 });
 
@@ -265,11 +272,15 @@ setInterval(() => {
         // filled up from all silos
         toggleMainSequence(sequenceOn);
         console.log('filled up from all silos');
+        createNotification(
+          'Proces sipanja sastojaka iz svih silosa uspješno završen.'
+        );
       }
     } else {
       // not enough supplies
       toggleMainSequence(sequenceOn);
       console.log('not enough supplies');
+      createNotification('Nedovoljno zaliha za željenu količinu betona.');
     }
   }
 }, 100);
@@ -279,8 +290,14 @@ let pour_concrete_btn = document.getElementById('pour_concrete_btn');
 let pourOut;
 
 pour_concrete_btn.addEventListener('click', () => {
+  let startedWithEmptyScaleFlag = false;
   if (sequenceOn == false && scaleEmptyingOn == false) {
-    console.log('pouring concrete out of the scale');
+    if (!(cement_scale == 0 && agg_4_scale == 0 && water_scale == 0)) {
+      console.log('pouring concrete out of the scale');
+      createNotification('Proces izlijevanja betona započet.');
+    } else {
+      startedWithEmptyScaleFlag = true;
+    }
     scaleEmptyingOn = true;
     pourOut = setInterval(() => {
       if (cement_scale > 0) {
@@ -311,7 +328,14 @@ pour_concrete_btn.addEventListener('click', () => {
         document.getElementById('total_gauge_scale').style.width =
           Math.floor((total_scale / req_total) * 100) + '%';
       } else {
-        console.log('scale empty');
+        if (startedWithEmptyScaleFlag) {
+          startedWithEmptyScaleFlag = false;
+          console.log('scale empty');
+          createNotification('Vaga prazna.');
+        } else {
+          console.log('pouring process complete, scale empty');
+          createNotification('Proces izlijevanja betona zavržen. Vaga prazna.');
+        }
         clearInterval(pourOut);
         scaleEmptyingOn = false;
       }
@@ -326,6 +350,9 @@ stop_concrete_btn.addEventListener('click', () => {
     clearInterval(pourOut);
     scaleEmptyingOn = false;
     console.log('pouring process stopped');
+    createNotification('Proces izlijevanja betona zaustavljen.');
+  } else {
+    createNotification('Proces izlijevanja betona nije pokrenut.');
   }
 });
 
@@ -333,8 +360,20 @@ stop_concrete_btn.addEventListener('click', () => {
 let refill = document.getElementById('refill');
 
 refill.addEventListener('click', () => {
+  let startedWithFullSilos = false;
   if (!sequenceOn) {
-    console.log('refill sequence on');
+    if (
+      !(
+        cement_current == cement_capacity &&
+        agg_4_current == agg_4_capacity &&
+        water_current == water_capacity
+      )
+    ) {
+      console.log('refill sequence on');
+      createNotification('Proces punjenje silosa pokrenut.');
+    } else {
+      startedWithFullSilos = true;
+    }
     refillOn = true;
     let fillUpSilos = setInterval(() => {
       if (cement_current < cement_capacity) {
@@ -356,11 +395,51 @@ refill.addEventListener('click', () => {
         document.getElementById('water_gauge_silo').style.width =
           (water_current / water_capacity) * 100 + '%';
       } else {
-        console.log('silos completely refilled');
+        if (startedWithFullSilos) {
+          startedWithFullSilos = false;
+          createNotification('Silosi napunjeni.');
+        } else {
+          console.log('silo completely refilled');
+          console.log('refill sequence off');
+          createNotification(
+            'Silosi napunjeni. Proces punjenja silosa obustavljen.'
+          );
+        }
         clearInterval(fillUpSilos);
-        console.log('refill sequence off');
         refillOn = false;
       }
     }, 100);
   }
 });
+
+// ############## NOTIFICATIONS #############
+function createNotification(msg) {
+  console.log('creating notification box');
+
+  // <div class="notification-box"></div>
+  const notification_wrapper = document.getElementById('notification_wrapper');
+  const notification_box = document.createElement('div');
+  notification_wrapper.appendChild(notification_box);
+  notification_box.classList.add('notification-box');
+
+  // <h5>message</h5>
+  const h5 = document.createElement('h5');
+  const message = document.createTextNode(msg);
+  notification_box.appendChild(h5);
+  h5.appendChild(message);
+
+  // remove notification after 5000 ms
+  setTimeout(() => {
+    notification_box.remove();
+  }, 5000);
+}
+
+// alternatively remove notification by clicking on it
+setInterval(() => {
+  let notes = document.getElementsByClassName('notification-box');
+  for (const note of notes) {
+    note.addEventListener('click', (event) => {
+      event.currentTarget.remove();
+    });
+  }
+}, 2000);
