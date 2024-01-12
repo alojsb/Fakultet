@@ -32,19 +32,39 @@
   </head>
   <body>
     <h1>Betonara Control Interface</h1>
-    <p>Reading int: <span id="reading-int"></span></p>
-    <p>Reading float: <span id="reading-float"></span></p>
-    <p>Reading bool: <span id="reading-bool"></span></p>
-    <p>Reading cement_current: <span id="reading-cement_current"></span></p>
-    <p>Reading sequenceOn: <span id="reading-sequenceOn"></span></p>
-    <button id="boolToggle" onclick="toggleBoolValue(dataBoolPath)">
-      Change
+
+    <p>Reading refillOn: <span id="reading-refillOn"></span></p>
+    <p>Reading cementSeqOn: <span id="reading-cementSeqOn"></span></p>
+    <p>Reading aggregateSeqOn: <span id="reading-aggregateSeqOn"></span></p>
+    <p>Reading waterSeqOn: <span id="reading-waterSeqOn"></span></p>
+    <p>Reading scaleEmptyingOn: <span id="reading-scaleEmptyingOn"></span></p>
+
+    <button id="toggleRefill" onclick="toggleRefill(refillOnPath)">
+      Flip Refill Status
     </button>
     <button
-      id="toggleMainSequence"
-      onclick="toggleMainSequence(sequenceOnPath)"
+      id="toggleCementSequence"
+      onclick="toggleCementSequence(cementSeqOnPath)"
     >
-      Flip Sequence Status
+      Flip Cement
+    </button>
+    <button
+      id="toggleAggregateSequence"
+      onclick="toggleAggregateSequence(aggregateSeqOnPath)"
+    >
+      Flip Aggregate
+    </button>
+    <button
+      id="toggleWaterSequence"
+      onclick="toggleWaterSequence(waterSeqOnPath)"
+    >
+      Flip Water
+    </button>
+    <button
+      id="toggleScaleEmptying"
+      onclick="toggleScaleEmptying(scaleEmptyingOnPath)"
+    >
+      Flip Scale Emptying Status
     </button>
   </body>
 </html>
