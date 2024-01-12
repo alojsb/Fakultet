@@ -28,8 +28,13 @@ FirebaseAuth auth;
 FirebaseConfig config;
 
 unsigned long sendDataPrevMillis = 0;
-int count = 0;
 bool signupOK = false;
+
+int cement_capacity;
+int cement_current;
+bool sequenceOn;
+
+bool test_bool;
 
 void setup(){
   Serial.begin(115200);
@@ -67,29 +72,78 @@ void setup(){
 }
 
 void loop(){
-  if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 15000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 2000 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
+
+    Serial.println("------------- print this or else... --------------");
+
+    // Read an Int from the realtime database
+    if (Firebase.RTDB.getInt(&fbdo, "concrete/cement_capacity")) {
+      if (fbdo.dataTypeEnum() == firebase_rtdb_data_type_integer) {
+        cement_capacity = fbdo.to<int>();
+        // Serial.println("this is the value of cement_capacity: ");
+        // Serial.println(cement_capacity);
+      }
+    }
+    // Read an Int from the realtime database
+    if (Firebase.RTDB.getInt(&fbdo, "concrete/cement_current")) {
+      if (fbdo.dataTypeEnum() == firebase_rtdb_data_type_integer) {
+        cement_current = fbdo.to<int>();
+        // Serial.println("this is the value of cement_capacity: ");
+        // Serial.println(cement_current);
+      }
+    }
+    // Read a bool value from the realtime database
+    if (Firebase.RTDB.getBool(&fbdo, "/concrete/sequenceOn")) {
+      if (fbdo.dataTypeEnum() == firebase_rtdb_data_type_boolean) {
+        sequenceOn = fbdo.to<bool>();
+        // Serial.println("this is the value of sequenceOn: ");
+        // Serial.println(sequenceOn);
+      }
+    }
+    // read bool II try
+    if (Firebase.RTDB.getBool(&fbdo, "/test/bool")) {
+      if (fbdo.dataTypeEnum() == firebase_rtdb_data_type_boolean) {
+        test_bool = fbdo.to<bool>();
+        // Serial.println("this is the value of test_bool: ");
+        // Serial.println(test_bool);
+      }
+    }
+    // increase cement current if sequenceOn is true
+    if (sequenceOn && cement_current < cement_capacity)
+    {
+      Firebase.RTDB.setInt(&fbdo, "concrete/cement_current", cement_current + 10);
+    }
+    
+
+    // Write an Int number to the realtime database
+    Firebase.RTDB.setInt(&fbdo, "concrete/cement_capacity", cement_capacity);
+    // Write a bool value to the realtime database
+    Firebase.RTDB.setBool(&fbdo, "test/bool", sequenceOn);
+
+    // ################## REFERENCE CODE #####################
     // Write an Int number on the database path test/int
-    if (Firebase.RTDB.setInt(&fbdo, "test/int", count)){
-      Serial.println("PASSED");
-      Serial.println("PATH: " + fbdo.dataPath());
-      Serial.println("TYPE: " + fbdo.dataType());
-    }
-    else {
-      Serial.println("FAILED");
-      Serial.println("REASON: " + fbdo.errorReason());
-    }
-    count++;
+    // if (Firebase.RTDB.setInt(&fbdo, "test/int", count)){
+    //   Serial.println("PASSED");
+    //   Serial.println("PATH: " + fbdo.dataPath());
+    //   Serial.println("TYPE: " + fbdo.dataType());
+    // }
+    // else {
+    //   Serial.println("FAILED");
+    //   Serial.println("REASON: " + fbdo.errorReason());
+    // }
+    // count++;
     
     // Write an Float number on the database path test/float
-    if (Firebase.RTDB.setFloat(&fbdo, "test/float", 0.01 + random(0,100))){
-      Serial.println("PASSED");
-      Serial.println("PATH: " + fbdo.dataPath());
-      Serial.println("TYPE: " + fbdo.dataType());
-    }
-    else {
-      Serial.println("FAILED");
-      Serial.println("REASON: " + fbdo.errorReason());
-    }
+    // if (Firebase.RTDB.setFloat(&fbdo, "test/float", 0.01 + random(0,100))){
+    //   Serial.println("PASSED");
+    //   Serial.println("PATH: " + fbdo.dataPath());
+    //   Serial.println("TYPE: " + fbdo.dataType());
+    // }
+    // else {
+    //   Serial.println("FAILED");
+    //   Serial.println("REASON: " + fbdo.errorReason());
+    // }
+
   }
 }
