@@ -87,7 +87,7 @@ void setup(){
 }
 
 void loop(){
-  if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 2000 || sendDataPrevMillis == 0)){
+  if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 500 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
 
     Serial.println("------------- print this or else... --------------");
