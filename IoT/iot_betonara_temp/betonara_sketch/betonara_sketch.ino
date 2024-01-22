@@ -38,8 +38,8 @@ bool waterSeqOn;
 bool scaleEmptyingOn;
 
 int redLEDPin = 5;
-int yellowLEDPin = 15;
-int greenLEDPin = 2;
+int yellowLEDPin = 2;
+int greenLEDPin = 15;
 
 void setup(){
   Serial.begin(115200);
