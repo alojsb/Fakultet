@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iks-oks", "Iks-oks\Iks-oks.csproj", "{6137AE4F-66E3-419B-BF66-2D9AF28E58A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL_2024_Vjezbe", "DL_2024_Vjezbe\DL_2024_Vjezbe.csproj", "{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6137AE4F-66E3-419B-BF66-2D9AF28E58A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6137AE4F-66E3-419B-BF66-2D9AF28E58A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6137AE4F-66E3-419B-BF66-2D9AF28E58A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
