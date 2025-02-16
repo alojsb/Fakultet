@@ -5,7 +5,13 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iks-oks", "Iks-oks\Iks-oks.csproj", "{6137AE4F-66E3-419B-BF66-2D9AF28E58A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL_2024_Vjezbe", "DL_2024_Vjezbe\DL_2024_Vjezbe.csproj", "{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL_2024_Vjezbe_1", "DL_2024_Vjezbe\DL_2024_Vjezbe_1.csproj", "{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL_2024_Vjezbe_2", "DL_Vjezbe_2\DL_2024_Vjezbe_2.csproj", "{5DCF0DDE-FFD7-488E-8163-AD555088A3F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniSteam.UI", "MiniSteam.UI\MiniSteam.UI.csproj", "{F34ABA72-54F2-455B-8DE7-54050C9E67D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniSteam.Core", "MiniSteam.Core\MiniSteam.Core.csproj", "{EA0E6C33-FEBC-4FD3-9A2D-4E9F0F76FF7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ECE6EAD-E2A7-4F63-8DAE-FC95B6005DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DCF0DDE-FFD7-488E-8163-AD555088A3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DCF0DDE-FFD7-488E-8163-AD555088A3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DCF0DDE-FFD7-488E-8163-AD555088A3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DCF0DDE-FFD7-488E-8163-AD555088A3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F34ABA72-54F2-455B-8DE7-54050C9E67D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34ABA72-54F2-455B-8DE7-54050C9E67D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34ABA72-54F2-455B-8DE7-54050C9E67D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34ABA72-54F2-455B-8DE7-54050C9E67D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA0E6C33-FEBC-4FD3-9A2D-4E9F0F76FF7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA0E6C33-FEBC-4FD3-9A2D-4E9F0F76FF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA0E6C33-FEBC-4FD3-9A2D-4E9F0F76FF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA0E6C33-FEBC-4FD3-9A2D-4E9F0F76FF7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
