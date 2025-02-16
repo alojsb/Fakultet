@@ -1,4 +1,4 @@
-﻿namespace DL_2024_Vjezbe
+﻿namespace DL_2024_Vjezbe_1
 {
     /*
      Star
