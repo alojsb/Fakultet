@@ -39,9 +39,8 @@
         }
 
         public void RemoveUser(User user) {
-            if (Owners.Contains(user))
-            {
-                Owners.Remove(user);
+            if (Owners.Remove(user))
+            {  
                 user.OwnedGames.Remove(this);
             }
         }
