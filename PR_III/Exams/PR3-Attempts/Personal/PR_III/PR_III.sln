@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL_2024_Vjezbe_3", "DL_2024_Vjezbe_3\DL_2024_Vjezbe_3.csproj", "{51789F5E-8016-4B9A-8FB4-D9D97E871A09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL_2024_Vjezbe_4", "DL_2024_Vjezbe_4\DL_2024_Vjezbe_4.csproj", "{15FA7611-B2D7-4E84-9145-92C0BE9CCDB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalkulator", "Kalkulator\Kalkulator.csproj", "{6470AD5E-501D-46A9-914B-6E8E2566A57E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,14 @@ Global
 		{51789F5E-8016-4B9A-8FB4-D9D97E871A09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51789F5E-8016-4B9A-8FB4-D9D97E871A09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51789F5E-8016-4B9A-8FB4-D9D97E871A09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FA7611-B2D7-4E84-9145-92C0BE9CCDB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FA7611-B2D7-4E84-9145-92C0BE9CCDB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FA7611-B2D7-4E84-9145-92C0BE9CCDB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FA7611-B2D7-4E84-9145-92C0BE9CCDB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6470AD5E-501D-46A9-914B-6E8E2566A57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6470AD5E-501D-46A9-914B-6E8E2566A57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6470AD5E-501D-46A9-914B-6E8E2566A57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6470AD5E-501D-46A9-914B-6E8E2566A57E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
