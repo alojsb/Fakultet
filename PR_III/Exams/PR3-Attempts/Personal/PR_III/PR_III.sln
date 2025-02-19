@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyGameStore.Data", "TinyG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyGameStore.InMemory", "TinyGameStore.InMemory\TinyGameStore.InMemory.csproj", "{D594DDCB-ECB8-444E-9091-21CBBF45ACED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL_2024_Vjezbe_8", "DL_2024_Vjezbe_8\DL_2024_Vjezbe_8.csproj", "{11A77F16-7E1B-4ADA-83DA-8DCFFDA723AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{D594DDCB-ECB8-444E-9091-21CBBF45ACED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D594DDCB-ECB8-444E-9091-21CBBF45ACED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D594DDCB-ECB8-444E-9091-21CBBF45ACED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A77F16-7E1B-4ADA-83DA-8DCFFDA723AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A77F16-7E1B-4ADA-83DA-8DCFFDA723AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A77F16-7E1B-4ADA-83DA-8DCFFDA723AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A77F16-7E1B-4ADA-83DA-8DCFFDA723AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
