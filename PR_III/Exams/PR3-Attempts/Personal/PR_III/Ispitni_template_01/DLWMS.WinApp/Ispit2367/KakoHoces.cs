@@ -62,6 +62,11 @@ namespace DLWMS.WinApp._2367
             FilterStudents();
         }
 
+        private void txtImeIliPrezime_KeyUp(object sender, KeyEventArgs e)
+        {
+            FilterStudents();
+        }
+
         private void FilterStudents()
         {
             // Start with the base query (include navigation properties if needed).
@@ -84,8 +89,58 @@ namespace DLWMS.WinApp._2367
                 query = query.Where(s => s.Grad.DrzavaId == selectedDrzavaId);
             }
 
-            // Finally, execute the query and show the results.
-            dataGridView1.DataSource = query.ToList();
+            // If the user types a string in the Ime i prezime field
+            string filterText = txtImeIliPrezime.Text.Trim().ToLower(); ;
+            if (!string.IsNullOrEmpty(filterText))
+            {
+                query = query.Where(s => s.Ime.ToLower().Contains(filterText) || s.Prezime.ToLower().Contains(filterText));
+            }
+
+            // Execute the query and show the results
+            var filteredList = query.ToList();
+            // If we found no matches, display a custom message in the DataGridView
+            if (filteredList.Count == 0)
+            {
+                var spolText = cbSpol.SelectedIndex > -1 ? cbSpol.Text : "nepoznatog spola";
+                var drzavaText = cbDrzava.SelectedIndex > -1 ? cbDrzava.Text : "nepoznate drzave";
+
+                MessageBox.Show(
+                    $"U bazi nisu evidentirani studenti spola \"{spolText}\", " +
+                    $"koji u imenu ili prezimenu posjeduju sadržaj \"{txtImeIliPrezime.Text}\" " +
+                    $"i koji su državljani \"{drzavaText}\".",
+                    "Prazna pretraga"
+                );
+            }
+            else
+            {
+                // Otherwise, just show the filtered students
+                dataGridView1.DataSource = filteredList;
+            }
+
+            // Set the form’s Text property to show the count:
+            this.Text = $"Broj prikazanih studenata: {filteredList.Count}";
+
+            //lblSpol.Text = cbSpol?.SelectedValue?.ToString();
+            //label3.Text = cbDrzava?.SelectedValue?.ToString();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Make sure it's a valid row and the user clicked the "Aktivan" column.
+            if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "Aktivan")
+            {
+                // End edit to ensure the checkbox state is updated in the row’s data.
+                dataGridView1.EndEdit();
+
+                // Retrieve the Student object bound to this row.
+                var student = (Student)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+
+                // student.Aktivan is already updated by the checkbox; just save to DB.
+                _DLWMSContext.SaveChanges();
+
+                // Optionally, refresh the grid if needed:
+                // dataGridView1.Refresh();
+            }
         }
     }
 }

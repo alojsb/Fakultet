@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
-            label1 = new Label();
+            txtImeIliPrezime = new TextBox();
+            lblImeIliPrezime = new Label();
             label2 = new Label();
             cbDrzava = new ComboBox();
             cbSpol = new ComboBox();
@@ -46,22 +46,24 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(797, 392);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // textBox1
+            // txtImeIliPrezime
             // 
-            textBox1.Location = new Point(12, 26);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 1;
+            txtImeIliPrezime.Location = new Point(12, 26);
+            txtImeIliPrezime.Name = "txtImeIliPrezime";
+            txtImeIliPrezime.Size = new Size(100, 23);
+            txtImeIliPrezime.TabIndex = 1;
+            txtImeIliPrezime.KeyUp += txtImeIliPrezime_KeyUp;
             // 
-            // label1
+            // lblImeIliPrezime
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 8);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 2;
-            label1.Text = "label1";
+            lblImeIliPrezime.AutoSize = true;
+            lblImeIliPrezime.Location = new Point(12, 8);
+            lblImeIliPrezime.Name = "lblImeIliPrezime";
+            lblImeIliPrezime.Size = new Size(84, 15);
+            lblImeIliPrezime.TabIndex = 2;
+            lblImeIliPrezime.Text = "Ime ili prezime";
             // 
             // label2
             // 
@@ -104,7 +106,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(127, 8);
+            label3.Location = new Point(674, 8);
             label3.Name = "label3";
             label3.Size = new Size(30, 15);
             label3.TabIndex = 8;
@@ -120,8 +122,8 @@
             Controls.Add(cbSpol);
             Controls.Add(cbDrzava);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(lblImeIliPrezime);
+            Controls.Add(txtImeIliPrezime);
             Controls.Add(dataGridView1);
             Name = "frmKakoHoces";
             Text = "Armin Dzafo";
@@ -134,8 +136,8 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private TextBox textBox1;
-        private Label label1;
+        private TextBox txtImeIliPrezime;
+        private Label lblImeIliPrezime;
         private Label label2;
         private ComboBox cbDrzava;
         private ComboBox cbSpol;
