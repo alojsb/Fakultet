@@ -47,6 +47,7 @@
             dataGridView1.Size = new Size(797, 392);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
             // txtImeIliPrezime
             // 

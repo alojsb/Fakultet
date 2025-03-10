@@ -10,15 +10,15 @@ using System.Windows.Forms;
 using DLWMS.Data;
 using DLWMS.WinApp;
 using DLWMS.Infrastructure;
-using DLWMS.WinApp.Ispit2367;
 using DLWMS.WinApp.Helpers;
 using Microsoft.EntityFrameworkCore;
+using DLWMS.WinApp.IspitBrojIndeksa;
 
 namespace DLWMS.WinApp._2367
 {
     public partial class frmKakoHoces : Form
     {
-        private readonly DLWMSContext _DLWMSContext = SharedBrojIndeksa.DLWMSContext;
+        private readonly DLWMSContext _DLWMSContext = new();
 
         public frmKakoHoces()
         {
@@ -76,21 +76,20 @@ namespace DLWMS.WinApp._2367
                 .AsQueryable();
 
             // If the user picked a Spol, filter by SpolId
-            if (cbSpol.SelectedIndex > -1)
+            if (cbSpol.SelectedIndex > -1 && cbSpol.SelectedValue != null)
             {
-                int selectedSpolId = (int)cbSpol.SelectedValue;
-                query = query.Where(s => s.SpolId == selectedSpolId);
+                query = query.Where(s => s.SpolId == (int)cbSpol.SelectedValue);
             }
 
             // If the user picked a Drzava, filter by DrzavaId
-            if (cbDrzava.SelectedIndex > -1)
+            if (cbDrzava.SelectedIndex > -1 && cbDrzava.SelectedValue != null)
             {
                 int selectedDrzavaId = (int)cbDrzava.SelectedValue;
                 query = query.Where(s => s.Grad.DrzavaId == selectedDrzavaId);
             }
 
             // If the user types a string in the Ime i prezime field
-            string filterText = txtImeIliPrezime.Text.Trim().ToLower(); ;
+            string filterText = txtImeIliPrezime.Text.Trim().ToLower();
             if (!string.IsNullOrEmpty(filterText))
             {
                 query = query.Where(s => s.Ime.ToLower().Contains(filterText) || s.Prezime.ToLower().Contains(filterText));
@@ -98,11 +97,20 @@ namespace DLWMS.WinApp._2367
 
             // Execute the query and show the results
             var filteredList = query.ToList();
+
+            // Set the form’s Text property to show the count:
+            this.Text = $"Broj prikazanih studenata: {filteredList.Count}";
+
             // If we found no matches, display a custom message in the DataGridView
             if (filteredList.Count == 0)
             {
-                var spolText = cbSpol.SelectedIndex > -1 ? cbSpol.Text : "nepoznatog spola";
-                var drzavaText = cbDrzava.SelectedIndex > -1 ? cbDrzava.Text : "nepoznate drzave";
+                //var spolText = cbSpol.SelectedIndex > -1 ? cbSpol.Text : "nepoznatog spola";
+                //var drzavaText = cbDrzava.SelectedIndex > -1 ? cbDrzava.Text : "nepoznate drzave";
+
+                var spolText = cbSpol.Text;
+                var drzavaText = cbDrzava.Text;
+
+                dataGridView1.DataSource = filteredList;
 
                 MessageBox.Show(
                     $"U bazi nisu evidentirani studenti spola \"{spolText}\", " +
@@ -116,9 +124,6 @@ namespace DLWMS.WinApp._2367
                 // Otherwise, just show the filtered students
                 dataGridView1.DataSource = filteredList;
             }
-
-            // Set the form’s Text property to show the count:
-            this.Text = $"Broj prikazanih studenata: {filteredList.Count}";
 
             //lblSpol.Text = cbSpol?.SelectedValue?.ToString();
             //label3.Text = cbDrzava?.SelectedValue?.ToString();
@@ -142,5 +147,28 @@ namespace DLWMS.WinApp._2367
                 // dataGridView1.Refresh();
             }
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            // If your grid is bound to an EF list of Student:
+            var studentRow = (Student)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+
+            // Or, if you only stored an ID in the row, retrieve it first:
+            // int selectedStudentId = (int)dataGridView1.Rows[e.RowIndex].Cells["Id"].Value;
+
+            // Eager load Grad + Drzava for the selected student
+            var loadedStudent = _DLWMSContext.Studenti
+                .Include(s => s.Grad)
+                .ThenInclude(g => g.Drzava)
+                .FirstOrDefault(s => s.Id == studentRow.Id);
+
+            // Pass the loaded student to your detail form
+            var studentDetailFrm = new frmStudentEditBrojIndeksa(loadedStudent, _DLWMSContext);
+            studentDetailFrm.ShowDialog();
+        }
+
     }
 }
