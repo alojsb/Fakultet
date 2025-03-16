@@ -1,6 +1,6 @@
 ﻿namespace DLWMS.WinApp._2367
 {
-    partial class frmKakoHoces
+    partial class frmPretragaBrojIndeksa
     {
         /// <summary>
         /// Required designer variable.
@@ -29,31 +29,77 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
+            columnImePrezime = new DataGridViewTextBoxColumn();
+            columnDrzava = new DataGridViewTextBoxColumn();
+            columnGrad = new DataGridViewTextBoxColumn();
+            columnSpol = new DataGridViewTextBoxColumn();
+            columnAktivan = new DataGridViewCheckBoxColumn();
+            columnRazmjena = new DataGridViewButtonColumn();
             txtImeIliPrezime = new TextBox();
             lblImeIliPrezime = new Label();
             label2 = new Label();
             cbDrzava = new ComboBox();
             cbSpol = new ComboBox();
             lblSpol = new Label();
-            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 55);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { columnImePrezime, columnDrzava, columnGrad, columnSpol, columnAktivan, columnRazmjena });
+            dataGridView1.Location = new Point(12, 55);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(797, 392);
+            dataGridView1.Size = new Size(680, 383);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+            // 
+            // columnImePrezime
+            // 
+            columnImePrezime.FillWeight = 200.000046F;
+            columnImePrezime.HeaderText = "(Indeks) Ime i Prezime";
+            columnImePrezime.Name = "columnImePrezime";
+            // 
+            // columnDrzava
+            // 
+            columnDrzava.FillWeight = 101.974754F;
+            columnDrzava.HeaderText = "Država";
+            columnDrzava.Name = "columnDrzava";
+            // 
+            // columnGrad
+            // 
+            columnGrad.FillWeight = 99.63277F;
+            columnGrad.HeaderText = "Grad";
+            columnGrad.Name = "columnGrad";
+            // 
+            // columnSpol
+            // 
+            columnSpol.FillWeight = 49.0093269F;
+            columnSpol.HeaderText = "Spol";
+            columnSpol.Name = "columnSpol";
+            // 
+            // columnAktivan
+            // 
+            columnAktivan.FillWeight = 49.47144F;
+            columnAktivan.HeaderText = "Aktivan";
+            columnAktivan.Name = "columnAktivan";
+            // 
+            // columnRazmjena
+            // 
+            columnRazmjena.FillWeight = 99.91172F;
+            columnRazmjena.HeaderText = "";
+            columnRazmjena.Name = "columnRazmjena";
+            columnRazmjena.Text = "Razmjene";
+            columnRazmjena.UseColumnTextForButtonValue = true;
             // 
             // txtImeIliPrezime
             // 
             txtImeIliPrezime.Location = new Point(12, 26);
             txtImeIliPrezime.Name = "txtImeIliPrezime";
-            txtImeIliPrezime.Size = new Size(100, 23);
+            txtImeIliPrezime.Size = new Size(187, 23);
             txtImeIliPrezime.TabIndex = 1;
             txtImeIliPrezime.KeyUp += txtImeIliPrezime_KeyUp;
             // 
@@ -69,7 +115,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(332, 9);
+            label2.Location = new Point(207, 8);
             label2.Name = "label2";
             label2.Size = new Size(42, 15);
             label2.TabIndex = 3;
@@ -79,9 +125,9 @@
             // 
             cbDrzava.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDrzava.FormattingEnabled = true;
-            cbDrzava.Location = new Point(332, 27);
+            cbDrzava.Location = new Point(207, 26);
             cbDrzava.Name = "cbDrzava";
-            cbDrzava.Size = new Size(121, 23);
+            cbDrzava.Size = new Size(139, 23);
             cbDrzava.TabIndex = 5;
             cbDrzava.SelectionChangeCommitted += cbDrzava_SelectionChangeCommitted;
             // 
@@ -89,36 +135,26 @@
             // 
             cbSpol.DropDownStyle = ComboBoxStyle.DropDownList;
             cbSpol.FormattingEnabled = true;
-            cbSpol.Location = new Point(549, 27);
+            cbSpol.Location = new Point(352, 26);
             cbSpol.Name = "cbSpol";
-            cbSpol.Size = new Size(121, 23);
+            cbSpol.Size = new Size(143, 23);
             cbSpol.TabIndex = 6;
             cbSpol.SelectionChangeCommitted += cbSpol_SelectionChangeCommitted;
             // 
             // lblSpol
             // 
             lblSpol.AutoSize = true;
-            lblSpol.Location = new Point(549, 8);
+            lblSpol.Location = new Point(352, 7);
             lblSpol.Name = "lblSpol";
             lblSpol.Size = new Size(30, 15);
             lblSpol.TabIndex = 7;
             lblSpol.Text = "Spol";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(674, 8);
-            label3.Name = "label3";
-            label3.Size = new Size(30, 15);
-            label3.TabIndex = 8;
-            label3.Text = "Spol";
-            // 
-            // frmKakoHoces
+            // frmPretragaBrojIndeksa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(label3);
+            ClientSize = new Size(709, 450);
             Controls.Add(lblSpol);
             Controls.Add(cbSpol);
             Controls.Add(cbDrzava);
@@ -126,9 +162,9 @@
             Controls.Add(lblImeIliPrezime);
             Controls.Add(txtImeIliPrezime);
             Controls.Add(dataGridView1);
-            Name = "frmKakoHoces";
+            Name = "frmPretragaBrojIndeksa";
             Text = "Armin Dzafo";
-            Load += frmKakoHoces_Load;
+            Load += frmPretragaBrojIndeksa_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -143,6 +179,11 @@
         private ComboBox cbDrzava;
         private ComboBox cbSpol;
         private Label lblSpol;
-        private Label label3;
+        private DataGridViewTextBoxColumn columnImePrezime;
+        private DataGridViewTextBoxColumn columnDrzava;
+        private DataGridViewTextBoxColumn columnGrad;
+        private DataGridViewTextBoxColumn columnSpol;
+        private DataGridViewCheckBoxColumn columnAktivan;
+        private DataGridViewButtonColumn columnRazmjena;
     }
 }

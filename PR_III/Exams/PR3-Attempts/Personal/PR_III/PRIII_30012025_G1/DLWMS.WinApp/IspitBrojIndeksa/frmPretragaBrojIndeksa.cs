@@ -16,20 +16,22 @@ using DLWMS.WinApp.IspitBrojIndeksa;
 
 namespace DLWMS.WinApp._2367
 {
-    public partial class frmKakoHoces : Form
+    public partial class frmPretragaBrojIndeksa : Form
     {
         private readonly DLWMSContext _DLWMSContext = new();
 
-        public frmKakoHoces()
+        public frmPretragaBrojIndeksa()
         {
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
         }
 
-        private void frmKakoHoces_Load(object sender, EventArgs e)
+        private void frmPretragaBrojIndeksa_Load(object sender, EventArgs e)
         {
-            UcitajSveStudente();
             UcitajSveSpolove();
             UcitajSveDrzave();
+            FilterStudents();
         }
 
         private void UcitajSveDrzave()
@@ -131,8 +133,21 @@ namespace DLWMS.WinApp._2367
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "columnRazmjena")
+            {
+                var studentRow = (Student)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+                //// open a "Razmjena" form, or do something
+                //MessageBox.Show($"Razmjena clicked for {student.Ime} {student.Prezime}");
+
+                var loadedStudent = _DLWMSContext.Studenti
+                    .Include(s => s.Grad)
+                    .ThenInclude(g => g.Drzava)
+                    .FirstOrDefault(s => s.Id == studentRow.Id);
+                var studentRazmjeneFrm = new frmRazmjeneBrojIndeksa(loadedStudent, _DLWMSContext);
+                studentRazmjeneFrm.ShowDialog();
+            }
             // Make sure it's a valid row and the user clicked the "Aktivan" column.
-            if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "Aktivan")
+            else if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "columnAktivan")
             {
                 // End edit to ensure the checkbox state is updated in the row’s data.
                 dataGridView1.EndEdit();
@@ -168,7 +183,41 @@ namespace DLWMS.WinApp._2367
             // Pass the loaded student to your detail form
             var studentDetailFrm = new frmStudentEditBrojIndeksa(loadedStudent, _DLWMSContext);
             studentDetailFrm.ShowDialog();
+            FilterStudents();
         }
 
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            // The row's data-bound item should be a Student object.
+            var row = dataGridView1.Rows[e.RowIndex];
+            var student = row.DataBoundItem as Student;
+            if (student == null)
+                return;
+
+            // Check which column is being formatted
+            var colName = dataGridView1.Columns[e.ColumnIndex].Name;
+
+            if (colName == "columnImePrezime")
+            {
+                e.Value = $"({student.BrojIndeksa}) {student.Ime} {student.Prezime}";
+            }
+            else if (colName == "columnGrad")
+            {
+                e.Value = student.Grad?.Naziv;
+            }
+            else if (colName == "columnDrzava")
+            {
+                e.Value = student.Grad?.Drzava?.Naziv;
+            }
+            else if (colName == "columnSpol")
+            {
+                e.Value = student.Spol?.Naziv;
+            }
+            columnAktivan.DataPropertyName = "Aktivan";
+            // RazmjenaColumn is a button column, also no custom formatting needed
+        }
     }
 }
