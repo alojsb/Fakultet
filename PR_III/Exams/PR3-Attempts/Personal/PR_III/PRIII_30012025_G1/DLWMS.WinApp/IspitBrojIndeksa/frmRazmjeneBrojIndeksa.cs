@@ -2,6 +2,7 @@
 using DLWMS.Data.IspitBrojIndeksa;
 using DLWMS.Infrastructure;
 using DLWMS.WinApp.Helpers;
+using DLWMS.WinApp.IspitBrojIndeksa.Izvjestaji;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -220,17 +221,26 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
                 if (confirmResult == DialogResult.Yes)
                 {
-                    if (confirmResult == DialogResult.Yes)
-                    {
-                        db.Razmjene.Remove(razmjenaToDelete);
-                        db.SaveChanges();
+                    db.Razmjene.Remove(razmjenaToDelete);
+                    db.SaveChanges();
 
-                        MessageBox.Show("Razmjena je uspješno obrisana.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        UcitajRazmjene(); // Refresh DataGridView
-                    }
+                    MessageBox.Show("Razmjena je uspješno obrisana.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UcitajRazmjene(); // Refresh DataGridView
                 }
             }
         }
 
+        private void btnPotvrda_Click(object sender, EventArgs e)
+        {
+            // Fetch the list of Razmjene for the student
+            var razmjeneList = db.Razmjene
+                .Include(r => r.Univerzitet)
+                .ThenInclude(u => u.Drzava)
+                .Where(r => r.StudentId == student.Id)
+                .ToList();
+
+            var frmIzvjestajLoaded = new frmIzvjestaj(razmjeneList, student);
+            frmIzvjestajLoaded.ShowDialog();
+        }
     }
 }

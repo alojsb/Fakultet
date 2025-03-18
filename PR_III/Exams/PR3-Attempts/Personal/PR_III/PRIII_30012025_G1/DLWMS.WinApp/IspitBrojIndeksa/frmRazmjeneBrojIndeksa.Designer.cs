@@ -46,6 +46,7 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
+            btnPotvrda = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvRazmjene).BeginInit();
             SuspendLayout();
             // 
@@ -186,11 +187,22 @@
             label5.TabIndex = 11;
             label5.Text = "Kraj razmjene:";
             // 
+            // btnPotvrda
+            // 
+            btnPotvrda.Location = new Point(851, 271);
+            btnPotvrda.Name = "btnPotvrda";
+            btnPotvrda.Size = new Size(75, 23);
+            btnPotvrda.TabIndex = 12;
+            btnPotvrda.Text = "Potvrda";
+            btnPotvrda.UseVisualStyleBackColor = true;
+            btnPotvrda.Click += btnPotvrda_Click;
+            // 
             // frmRazmjeneBrojIndeksa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(938, 450);
+            Controls.Add(btnPotvrda);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -231,5 +243,6 @@
         private DataGridViewTextBoxColumn colEcts;
         private DataGridViewCheckBoxColumn colOkoncana;
         private DataGridViewButtonColumn colObrisi;
+        private Button btnPotvrda;
     }
 }

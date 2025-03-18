@@ -9,10 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="IspitBrojIndeksa\Izvjestaji\rptRazmjene.rdlc" />
     <None Remove="Izvjestaji\rptKartonStudenta.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="IspitBrojIndeksa\Izvjestaji\rptRazmjene.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvjestaji\rptKartonStudenta.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -28,6 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="IspitBrojIndeksa\Izvjestaji\dsRazmjene.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsRazmjene.xsd</DependentUpon>
+    </Compile>
     <Compile Update="Izvjestaji\dsDLWMS.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -59,6 +68,10 @@
   <ItemGroup>
     <None Update="DLWMS.db">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="IspitBrojIndeksa\Izvjestaji\dsRazmjene.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRazmjene.Designer.cs</LastGenOutput>
     </None>
     <None Update="Izvjestaji\dsDLWMS.xsd">
       <Generator>MSDataSetGenerator</Generator>
