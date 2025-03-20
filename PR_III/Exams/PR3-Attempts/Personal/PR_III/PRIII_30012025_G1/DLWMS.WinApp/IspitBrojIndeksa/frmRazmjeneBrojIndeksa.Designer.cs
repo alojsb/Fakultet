@@ -47,7 +47,18 @@
             label4 = new Label();
             label5 = new Label();
             btnPotvrda = new Button();
+            gbGeneratorRazmjena = new GroupBox();
+            lblInfo = new Label();
+            txtInfo = new TextBox();
+            btnGenerisiRazmjene = new Button();
+            lblBrojKredita = new Label();
+            lblBrojRazmjena = new Label();
+            txtBrojKredita = new TextBox();
+            txtBrojRazmjena = new TextBox();
+            lblUniverzitet2 = new Label();
+            cmbUniverzitet2 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvRazmjene).BeginInit();
+            gbGeneratorRazmjena.SuspendLayout();
             SuspendLayout();
             // 
             // dgvRazmjene
@@ -197,11 +208,107 @@
             btnPotvrda.UseVisualStyleBackColor = true;
             btnPotvrda.Click += btnPotvrda_Click;
             // 
+            // gbGeneratorRazmjena
+            // 
+            gbGeneratorRazmjena.Controls.Add(lblInfo);
+            gbGeneratorRazmjena.Controls.Add(txtInfo);
+            gbGeneratorRazmjena.Controls.Add(btnGenerisiRazmjene);
+            gbGeneratorRazmjena.Controls.Add(lblBrojKredita);
+            gbGeneratorRazmjena.Controls.Add(lblBrojRazmjena);
+            gbGeneratorRazmjena.Controls.Add(txtBrojKredita);
+            gbGeneratorRazmjena.Controls.Add(txtBrojRazmjena);
+            gbGeneratorRazmjena.Controls.Add(lblUniverzitet2);
+            gbGeneratorRazmjena.Controls.Add(cmbUniverzitet2);
+            gbGeneratorRazmjena.Location = new Point(12, 307);
+            gbGeneratorRazmjena.Name = "gbGeneratorRazmjena";
+            gbGeneratorRazmjena.Size = new Size(914, 213);
+            gbGeneratorRazmjena.TabIndex = 13;
+            gbGeneratorRazmjena.TabStop = false;
+            gbGeneratorRazmjena.Text = "Generator razmjena";
+            // 
+            // lblInfo
+            // 
+            lblInfo.AutoSize = true;
+            lblInfo.Location = new Point(242, 19);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new Size(31, 15);
+            lblInfo.TabIndex = 8;
+            lblInfo.Text = "Info:";
+            // 
+            // txtInfo
+            // 
+            txtInfo.Location = new Point(242, 42);
+            txtInfo.Multiline = true;
+            txtInfo.Name = "txtInfo";
+            txtInfo.Size = new Size(666, 165);
+            txtInfo.TabIndex = 7;
+            // 
+            // btnGenerisiRazmjene
+            // 
+            btnGenerisiRazmjene.Location = new Point(6, 143);
+            btnGenerisiRazmjene.Name = "btnGenerisiRazmjene";
+            btnGenerisiRazmjene.Size = new Size(206, 23);
+            btnGenerisiRazmjene.TabIndex = 6;
+            btnGenerisiRazmjene.Text = "Generiši razmjene >>>>>";
+            btnGenerisiRazmjene.UseVisualStyleBackColor = true;
+            btnGenerisiRazmjene.Click += btnGenerisiRazmjene_Click;
+            // 
+            // lblBrojKredita
+            // 
+            lblBrojKredita.AutoSize = true;
+            lblBrojKredita.Location = new Point(112, 82);
+            lblBrojKredita.Name = "lblBrojKredita";
+            lblBrojKredita.Size = new Size(70, 15);
+            lblBrojKredita.TabIndex = 5;
+            lblBrojKredita.Text = "Broj kredita:";
+            // 
+            // lblBrojRazmjena
+            // 
+            lblBrojRazmjena.AutoSize = true;
+            lblBrojRazmjena.Location = new Point(6, 82);
+            lblBrojRazmjena.Name = "lblBrojRazmjena";
+            lblBrojRazmjena.Size = new Size(82, 15);
+            lblBrojRazmjena.TabIndex = 4;
+            lblBrojRazmjena.Text = "Broj razmjena:";
+            // 
+            // txtBrojKredita
+            // 
+            txtBrojKredita.Location = new Point(112, 100);
+            txtBrojKredita.Name = "txtBrojKredita";
+            txtBrojKredita.Size = new Size(100, 23);
+            txtBrojKredita.TabIndex = 3;
+            // 
+            // txtBrojRazmjena
+            // 
+            txtBrojRazmjena.Location = new Point(6, 100);
+            txtBrojRazmjena.Name = "txtBrojRazmjena";
+            txtBrojRazmjena.Size = new Size(100, 23);
+            txtBrojRazmjena.TabIndex = 2;
+            // 
+            // lblUniverzitet2
+            // 
+            lblUniverzitet2.AutoSize = true;
+            lblUniverzitet2.Location = new Point(6, 19);
+            lblUniverzitet2.Name = "lblUniverzitet2";
+            lblUniverzitet2.Size = new Size(66, 15);
+            lblUniverzitet2.TabIndex = 1;
+            lblUniverzitet2.Text = "Univerzitet:";
+            // 
+            // cmbUniverzitet2
+            // 
+            cmbUniverzitet2.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbUniverzitet2.FormattingEnabled = true;
+            cmbUniverzitet2.Location = new Point(6, 42);
+            cmbUniverzitet2.Name = "cmbUniverzitet2";
+            cmbUniverzitet2.Size = new Size(206, 23);
+            cmbUniverzitet2.TabIndex = 0;
+            // 
             // frmRazmjeneBrojIndeksa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(938, 450);
+            ClientSize = new Size(938, 532);
+            Controls.Add(gbGeneratorRazmjena);
             Controls.Add(btnPotvrda);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -219,6 +326,8 @@
             Text = "frmRazmjeneBrojIndeksa";
             Load += frmRazmjeneBrojIndeksa_Load;
             ((System.ComponentModel.ISupportInitialize)dgvRazmjene).EndInit();
+            gbGeneratorRazmjena.ResumeLayout(false);
+            gbGeneratorRazmjena.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -244,5 +353,15 @@
         private DataGridViewCheckBoxColumn colOkoncana;
         private DataGridViewButtonColumn colObrisi;
         private Button btnPotvrda;
+        private GroupBox gbGeneratorRazmjena;
+        private ComboBox cmbUniverzitet2;
+        private Button btnGenerisiRazmjene;
+        private Label lblBrojKredita;
+        private Label lblBrojRazmjena;
+        private TextBox txtBrojKredita;
+        private TextBox txtBrojRazmjena;
+        private Label lblUniverzitet2;
+        private Label lblInfo;
+        private TextBox txtInfo;
     }
 }

@@ -3,6 +3,7 @@ using DLWMS.Data.IspitBrojIndeksa;
 using DLWMS.Infrastructure;
 using DLWMS.WinApp.Helpers;
 using DLWMS.WinApp.IspitBrojIndeksa.Izvjestaji;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,10 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
             //dgvRazmjene.DataSource = db.Razmjene.ToList();
             UcitajRazmjene();
+
+            // ucitaj donji spisak svih univerziteta
+            cmbUniverzitet2.UcitajPodatke(db.Univerziteti.ToList());
+            cmbUniverzitet2.SelectedIndex = -1;
         }
 
         private void UcitajRazmjene()
@@ -242,5 +247,149 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
             var frmIzvjestajLoaded = new frmIzvjestaj(razmjeneList, student);
             frmIzvjestajLoaded.ShowDialog();
         }
+
+        public DateTime GetNextStartDate(int studentId)
+        {
+            // Retrieve the last razmjena for the student (ordered by end date descending)
+            var lastRazmjena = db.Razmjene
+                .Where(r => r.StudentId == studentId)
+                .OrderByDescending(r => r.KrajRazmjene)
+                .FirstOrDefault();
+
+            // If the student has previous razmjene, start from the next day after the last end date.
+            if (lastRazmjena != null)
+            {
+                return lastRazmjena.KrajRazmjene.AddDays(1);
+            }
+
+            // If no razmjene exist, start from 1st January 2025.
+            return new DateTime(2025, 1, 1);
+        }
+
+        //private void btnGenerisiRazmjene_Click(object sender, EventArgs e)
+        //{
+        //    var brojRazmjena = int.Parse(txtBrojRazmjena.Text);
+        //    DateTime startDate = GetNextStartDate(student.Id);
+        //    var sb = new StringBuilder(); // To accumulate the new razmjene for txtInfo
+
+        //    for (int i = 0; i < brojRazmjena; i++)
+        //    {
+        //        var endDate = startDate.AddDays(int.Parse(txtBrojKredita.Text) + (i + 1));
+
+        //        var novaRazmjena = new Razmjena
+        //        {
+        //            StudentId = student.Id,
+        //            UniverzitetId = (int)cmbUniverzitet2.SelectedValue,
+        //            PocetakRazmjene = startDate,
+        //            KrajRazmjene = endDate,
+        //            ECTS = int.Parse(txtBrojKredita.Text),
+        //            isOkoncana = endDate <= DateTime.Now // If end date is in the past, mark as completed
+        //        };
+
+        //        db.Razmjene.Add(novaRazmjena);
+        //        db.SaveChanges();
+
+        //        // The next razmjena should start the day after the current one ends
+        //        startDate = endDate.AddDays(1);
+
+        //        // Append to txtInfo instead of overwriting
+        //        sb.AppendLine($"{i + 1}. razmjena za ({student.BrojIndeksa}) {student.Ime} {student.Prezime} na {novaRazmjena.Univerzitet.Naziv} ({novaRazmjena.PocetakRazmjene:dd.MM.yyyy} - {novaRazmjena.KrajRazmjene:dd.MM.yyyy})");
+        //    }
+
+        //    // Update the text field
+        //    txtInfo.Text = sb.ToString();
+
+        //    // Refresh DataGridView to immediately display the new records
+        //    UcitajRazmjene();
+        //}
+
+        private void btnGenerisiRazmjene_Click(object sender, EventArgs e)
+        {
+            if (!ValidanUnos2())
+            {
+                return;
+            }
+
+            btnGenerisiRazmjene.Enabled = false; // Disable button to prevent multiple clicks
+            int univerzitetId = (int)cmbUniverzitet2.SelectedValue;
+            int ects = int.Parse(txtBrojKredita.Text);
+
+            Task.Run(() =>
+            {
+                var brojRazmjena = int.Parse(txtBrojRazmjena.Text);
+                var startDate = new DateTime(2025, 1, 1);
+                var sb = new StringBuilder(); // To accumulate the new razmjene for txtInfo
+
+                using (var dbContext = new DLWMSContext()) // Create a new DbContext instance for thread safety
+                {
+                    var univerzitet = dbContext.Univerziteti
+                        .Where(u => u.Id == univerzitetId)
+                        .Select(u => u.Naziv)
+                        .FirstOrDefault();
+
+                    for (int i = 0; i < brojRazmjena; i++)
+                    {
+                        var endDate = startDate.AddDays(int.Parse(txtBrojKredita.Text) + (i + 1));
+                        var novaRazmjena = new Razmjena
+                        {
+                            StudentId = student.Id,
+                            UniverzitetId = univerzitetId,
+                            PocetakRazmjene = startDate,
+                            KrajRazmjene = endDate,
+                            ECTS = ects,
+                            isOkoncana = endDate <= DateTime.Now // If end date is in the past, mark as completed
+                        };
+
+                        db.Razmjene.Add(novaRazmjena);
+                        db.SaveChanges();
+
+                        // Append details to StringBuilder (no need to Invoke)
+                        sb.AppendLine($"{i + 1}. razmjena za ({student.BrojIndeksa}) {student.Ime} {student.Prezime} na {univerzitet} ({novaRazmjena.PocetakRazmjene:dd.MM.yyyy} - {novaRazmjena.KrajRazmjene:dd.MM.yyyy})");
+
+                        Thread.Sleep(300); // Pause execution for 300ms
+                    }
+                }
+
+                // Refresh DataGridView (must be done on UI thread)
+                this.Invoke((MethodInvoker)delegate
+                {
+                    // Update the text field
+                    txtInfo.Text = sb.ToString();
+
+                    // Refresh DataGridView to immediately display the new records
+                    UcitajRazmjene();
+
+                    // Re-enable button after completion
+                    btnGenerisiRazmjene.Enabled = true;
+
+                    // inform the user of completion
+                    MessageBox.Show("Razmjene uspješno dodane", "Info");
+                });
+            });
+        }
+
+        private bool ValidanUnos2()
+        {
+            if (cmbUniverzitet2.SelectedIndex == -1)
+            {
+                MessageBox.Show("Molimo odaberite univerzitet.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!int.TryParse(txtBrojRazmjena.Text, out int brojRazmjena) || brojRazmjena <= 0)
+            {
+                MessageBox.Show("Molimo unesite validan pozitivan cijeli broj za broj razmjena.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!int.TryParse(txtBrojKredita.Text, out int brojKredita) || brojKredita <= 0)
+            {
+                MessageBox.Show("Molimo unesite validan pozitivan cijeli broj za broj kredita.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }
