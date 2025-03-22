@@ -20,7 +20,7 @@ namespace DLWMS.WinApp.Helpers
         {
             return Image.FromStream(new MemoryStream(image));
         }
-
+         
         public static object GetOdabraniRed(this DataGridView dataGridView)
         {
             if(dataGridView.SelectedRows.Count == 0)

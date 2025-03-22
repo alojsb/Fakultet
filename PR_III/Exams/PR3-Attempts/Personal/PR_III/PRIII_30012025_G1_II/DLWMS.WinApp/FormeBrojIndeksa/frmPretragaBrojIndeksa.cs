@@ -132,5 +132,16 @@ namespace DLWMS.WinApp.FormeBrojIndeksa
                 _DLWMSContext.SaveChanges();
             }
         }
+
+        private void dgvStudenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var studentRow = (Student)dgvStudenti.Rows[e.RowIndex].DataBoundItem;
+            //MessageBox.Show($"Otvaranje nove forme placehodler za studenta {studentRow.Ime}");
+
+            var frmStudentDetail = new frmStudentEditBrojIndeksa(studentRow, _DLWMSContext);
+            frmStudentDetail.ShowDialog();
+
+            FiltrirajStudente();
+        }
     }
 }
