@@ -131,6 +131,15 @@ namespace DLWMS.WinApp.FormeBrojIndeksa
                 dgvStudenti.EndEdit();
                 _DLWMSContext.SaveChanges();
             }
+
+            if (e.RowIndex >= 0 && dgvStudenti.Columns[e.ColumnIndex].Name == "colRazmjeneBtn")
+            {
+                var studentRow = (Student)dgvStudenti.Rows[e.RowIndex].DataBoundItem;
+
+                //MessageBox.Show($"Placeholder za frmRazmjene za studenta {studentRow.Ime}");
+                var frmStudentRazmjene = new frmRazmjeneBrojIndeksa(studentRow, _DLWMSContext);
+                frmStudentRazmjene.ShowDialog();
+            }
         }
 
         private void dgvStudenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

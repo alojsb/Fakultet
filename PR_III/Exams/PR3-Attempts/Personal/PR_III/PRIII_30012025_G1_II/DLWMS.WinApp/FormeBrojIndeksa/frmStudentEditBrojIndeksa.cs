@@ -27,6 +27,8 @@ namespace DLWMS.WinApp.FormeBrojIndeksa
 
         private void frmStudentEditBrojIndeksa_Load(object sender, EventArgs e)
         {
+            this.Text = "Podaci o studentu";
+
             pbProfilnaSlika.Image = Helpers.Ekstenzije.ToImage(student.Slika);
 
             lblImePrezime.Text = $"{student.Ime} {student.Prezime}";

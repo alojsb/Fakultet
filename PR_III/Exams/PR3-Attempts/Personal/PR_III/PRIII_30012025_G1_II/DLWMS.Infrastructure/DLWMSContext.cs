@@ -1,4 +1,5 @@
 ﻿using DLWMS.Data;
+using DLWMS.Data.EntitetiBrojIndeksa;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,7 @@ namespace DLWMS.Infrastructure
         public DbSet<Drzava> Drzave { get; set; }
         public DbSet<Spol> Spolovi { get; set; }
         public DbSet<Grad> Gradovi { get; set; }
-
+        public DbSet<Univerzitet> Univerziteti { get; set; }
+        public DbSet<Razmjena> Razmjene {  get; set; }
     }
 }
