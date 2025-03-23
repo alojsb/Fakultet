@@ -123,6 +123,13 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 dgvStudenti.EndEdit();
                 _DLWMSContext.SaveChanges();
             }
+
+            if (e.RowIndex >= 0 && dgvStudenti.Columns[e.ColumnIndex].Name == "colRazmjene")
+            {
+                var student = dgvStudenti.Rows[e.RowIndex].DataBoundItem as Student;
+                var prikazFormeRazmjene = new frmRazmjeneBrojIndeksa(student, _DLWMSContext);
+                prikazFormeRazmjene.ShowDialog();
+            }
         }
 
         private void dgvStudenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
