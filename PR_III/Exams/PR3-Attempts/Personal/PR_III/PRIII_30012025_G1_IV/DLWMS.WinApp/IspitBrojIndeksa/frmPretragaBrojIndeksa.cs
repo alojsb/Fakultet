@@ -113,7 +113,18 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
             if (e.RowIndex >= 0 && dgvStudenti.Columns[e.ColumnIndex].Name == "colAktivan")
             {
                 dgvStudenti.EndEdit();
-                dbContext.SaveChanges();                
+                dbContext.SaveChanges();
+            }
+        }
+
+        private void dgvStudenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var student = dgvStudenti.Rows[e.RowIndex].DataBoundItem as Student;
+                var prikazStudentEditForme = new frmStudentEditBrojIndeksa(student, dbContext);
+                prikazStudentEditForme.ShowDialog();
+                FiltrirajStudente();
             }
         }
     }
