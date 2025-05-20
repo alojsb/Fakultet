@@ -1,0 +1,1 @@
+The folder holds exam solutions from other colleagues or from the web.
