@@ -12,6 +12,9 @@
         public int GradId { get; set; }
         public int SpolId { get; set; }
         public byte[] Slika { get; set; }
-        public bool Aktivan { get; set; }      
+        public bool Aktivan { get; set; }
+        
+        public Grad Grad { get; set; }
+        public Spol Spol { get; set; }
     }
 }
