@@ -59,7 +59,7 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
             cmbDrzava.UcitajPodatke(db.Drzave.ToList());
             cmbDrzava.SelectedIndex = -1;
 
-            cmbSpol.UcitajPodatke(db.Spolovi.ToList());
+            cmbSpol.UcitajPodatke(db.SpoloviBrojIndeksa.ToList());
             cmbSpol.SelectedIndex = -1;
 
             FiltrirajStudente();

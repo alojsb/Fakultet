@@ -74,11 +74,14 @@
             // 
             // dgvStudenti
             // 
+            dgvStudenti.AllowUserToAddRows = false;
+            dgvStudenti.AllowUserToDeleteRows = false;
             dgvStudenti.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStudenti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStudenti.Columns.AddRange(new DataGridViewColumn[] { colImePrezime, colDrzava, colGrad, colSpol, colAktivan, colRazmjene });
             dgvStudenti.Location = new Point(12, 68);
             dgvStudenti.Name = "dgvStudenti";
+            dgvStudenti.ReadOnly = true;
             dgvStudenti.Size = new Size(776, 370);
             dgvStudenti.TabIndex = 3;
             dgvStudenti.CellContentClick += dgvStudenti_CellContentClick;
@@ -88,31 +91,37 @@
             // 
             colImePrezime.HeaderText = "(Indeks) Ime i prezime";
             colImePrezime.Name = "colImePrezime";
+            colImePrezime.ReadOnly = true;
             // 
             // colDrzava
             // 
             colDrzava.HeaderText = "Država";
             colDrzava.Name = "colDrzava";
+            colDrzava.ReadOnly = true;
             // 
             // colGrad
             // 
             colGrad.HeaderText = "Grad";
             colGrad.Name = "colGrad";
+            colGrad.ReadOnly = true;
             // 
             // colSpol
             // 
             colSpol.HeaderText = "Spol";
             colSpol.Name = "colSpol";
+            colSpol.ReadOnly = true;
             // 
             // colAktivan
             // 
             colAktivan.HeaderText = "Aktivan";
             colAktivan.Name = "colAktivan";
+            colAktivan.ReadOnly = true;
             // 
             // colRazmjene
             // 
             colRazmjene.HeaderText = "";
             colRazmjene.Name = "colRazmjene";
+            colRazmjene.ReadOnly = true;
             colRazmjene.Text = "Razmjene";
             colRazmjene.UseColumnTextForButtonValue = true;
             // 

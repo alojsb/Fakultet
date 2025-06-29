@@ -17,6 +17,6 @@ namespace DLWMS.Infrastructure
 
         public DbSet<Student> Studenti { get; set; }
         public DbSet<Drzava> Drzave { get; set; }
-        public DbSet<Spol> Spolovi { get; set; }
+        public DbSet<Spol> SpoloviBrojIndeksa { get; set; }
     }
 }
