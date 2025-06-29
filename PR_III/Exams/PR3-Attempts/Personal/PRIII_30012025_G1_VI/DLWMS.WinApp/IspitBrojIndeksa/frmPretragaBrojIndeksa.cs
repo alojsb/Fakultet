@@ -23,6 +23,7 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
         {
             InitializeComponent();
             dgvStudenti.AutoGenerateColumns = false;
+            dgvStudenti.CellFormatting += dgvStudenti_CellFormatting;
         }
 
         void FiltrirajStudente()
@@ -113,6 +114,16 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 dgvStudenti.EndEdit();
                 db.SaveChanges();
             }
+        }
+
+        private void dgvStudenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var studentItem = (Student)dgvStudenti.Rows[e.RowIndex].DataBoundItem;
+
+            var frmStudentEdit = new frmStudentEditBrojIndeksa(studentItem, db);
+            frmStudentEdit.ShowDialog();
+
+            FiltrirajStudente();
         }
     }
 }
