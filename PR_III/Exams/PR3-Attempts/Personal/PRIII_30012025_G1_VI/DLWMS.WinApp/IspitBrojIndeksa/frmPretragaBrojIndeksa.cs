@@ -114,6 +114,14 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 dgvStudenti.EndEdit();
                 db.SaveChanges();
             }
+
+            if (e.RowIndex >= 0 && dgvStudenti.Columns[e.ColumnIndex].Name == "colRazmjene")
+            {
+                var studentItem = (Student)dgvStudenti.Rows[e.RowIndex].DataBoundItem;
+
+                var frmRazmjene = new frmRazmjeneBrojIndeksa(studentItem, db);
+                frmRazmjene.ShowDialog();
+            }
         }
 
         private void dgvStudenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

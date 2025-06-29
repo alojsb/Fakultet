@@ -19,5 +19,7 @@ namespace DLWMS.Infrastructure
         public DbSet<Drzava> Drzave { get; set; }
         public DbSet<Spol> SpoloviBrojIndeksa { get; set; }
         public DbSet<Grad> Gradovi { get; set; }
+        public DbSet<UniverzitetBrojIndeksa> UniverzitetiBrojIndeksa { get; set; }
+        public DbSet<RazmjenaBrojIndeksa> RazmjeneBrojIndeksa{ get; set; }
     }
 }
