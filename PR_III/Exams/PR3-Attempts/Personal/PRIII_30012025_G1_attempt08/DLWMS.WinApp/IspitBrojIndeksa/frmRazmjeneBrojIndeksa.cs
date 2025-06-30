@@ -35,12 +35,7 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
             cmbDrzava.UcitajPodatke(dbContext.Drzave.ToList());
 
-            if (cmbDrzava.SelectedValue != null)
-            {
-                var selectedDrzavaId = (int)cmbDrzava.SelectedValue;
-                cmbUniverzitet.UcitajPodatke(dbContext.UniverzitetiBrojIndeksa.Where(u => u.DrzavaId == selectedDrzavaId).ToList());
-            }
-
+            UcitajUniverzitete();
             OsvjeziRazmjene();
         }
 
@@ -54,6 +49,11 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
         }
 
         private void cmbDrzava_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UcitajUniverzitete();
+        }
+
+        private void UcitajUniverzitete()
         {
             if (cmbDrzava.SelectedValue != null)
             {
