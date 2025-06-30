@@ -56,14 +56,15 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
             query = query.Where(s => s.Ime.ToLower().Contains(pretragaImePrezime) || s.Prezime.ToLower().Contains(pretragaImePrezime));
 
-            this.Text = $"Broj prikazanih studenata: {query.Count()}";
+            var studenti = query.ToList();
+            this.Text = $"Broj prikazanih studenata: {studenti.Count()}";
 
-            if (query.Count() == 0)
+            dgvStudenti.DataSource = studenti ;
+
+            if (studenti.Count() == 0)
             {
                 MessageBox.Show($"U bazi nisu evidentirani studenti spola {cmbSpol.Text}, koji u imenu i prezimenu posjeduju sadržaj {txtImePrezime.Text}, a koji su državljani {cmbDrzava.Text}.", "Obavijest", MessageBoxButtons.OK);
             }
-
-            dgvStudenti.DataSource = query.ToList();
         }
 
         private void cmbDrzava_SelectionChangeCommitted(object sender, EventArgs e)
@@ -114,6 +115,16 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 dgvStudenti.EndEdit();
                 db.SaveChanges();
             }
+        }
+
+        private void dgvStudenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var student = dgvStudenti.Rows[e.RowIndex].DataBoundItem as Student;
+
+            var novaForma = new frmStudentEditBrojIndeksa(student, db);
+            novaForma.ShowDialog();
+
+            FiltrirajStudente();
         }
     }
 }
