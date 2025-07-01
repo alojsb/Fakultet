@@ -117,5 +117,13 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 db.SaveChanges();
             }
         }
+
+        private void dgvStudenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var student = dgvStudenti.Rows[e.RowIndex].DataBoundItem as Student;
+
+            var novaForma = new frmStudentEditBrojIndeksa(student, db);
+            novaForma.ShowDialog();
+        }
     }
 }

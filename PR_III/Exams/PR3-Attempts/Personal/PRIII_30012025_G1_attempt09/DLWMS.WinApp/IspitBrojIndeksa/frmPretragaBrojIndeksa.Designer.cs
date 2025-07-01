@@ -110,6 +110,7 @@
             dgvStudenti.Size = new Size(776, 371);
             dgvStudenti.TabIndex = 3;
             dgvStudenti.CellContentClick += dgvStudenti_CellContentClick;
+            dgvStudenti.CellDoubleClick += dgvStudenti_CellDoubleClick;
             dgvStudenti.CellFormatting += dgvStudenti_CellFormatting;
             // 
             // ImePrezime
