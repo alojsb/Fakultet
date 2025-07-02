@@ -39,11 +39,13 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 return;
             }
 
-            var postojecaKombinacija = _db.StipendijeGodineBrojIndeksa
-                .Where(sg => sg.StipendijaId == (int)cmbStipendija.SelectedValue && sg.Godina == int.Parse(cmbGodina.SelectedItem.ToString()))
-                .ToList();
+            var selectedGodina = int.Parse(cmbGodina.SelectedItem.ToString());
 
-            if (postojecaKombinacija.Count != 0)
+            var kombinacijaPostoji = _db.StipendijeGodineBrojIndeksa
+                .Any(sg => sg.StipendijaId == (int)cmbStipendija.SelectedValue &&
+                           sg.Godina == selectedGodina);
+
+            if (kombinacijaPostoji)
             {
                 MessageBox.Show("Postojeća kombinacija stipendije i godine već postoji.", "Upozorenje", MessageBoxButtons.OK);
                 return;
@@ -59,6 +61,8 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
             _db.StipendijeGodineBrojIndeksa.Add(novaStipendijaGodina);
             _db.SaveChanges();
+
+            OsvjeziPodatke();
         }
 
         private void dgvStipendijeGodine_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -67,8 +71,9 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
             {
                 var selectedRow = dgvStipendijeGodine.Rows[e.RowIndex].DataBoundItem as StipendijaGodinaBrojIndeksa;
 
-                if (selectedRow != null) { 
-                    
+                if (selectedRow != null)
+                {
+
                     selectedRow.Aktivna = !selectedRow.Aktivna;
                 }
 
