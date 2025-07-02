@@ -83,6 +83,7 @@
             btnPoGodinama.TabIndex = 1;
             btnPoGodinama.Text = "Stipendije po godinama";
             btnPoGodinama.UseVisualStyleBackColor = true;
+            btnPoGodinama.Click += btnPoGodinama_Click;
             // 
             // label1
             // 

@@ -155,6 +155,10 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 FiltrirajStudenteStipendije();
         }
 
-
+        private void btnPoGodinama_Click(object sender, EventArgs e)
+        {
+            var novaForma = new frmStipendijeBrojIndeksa(db);
+            novaForma.ShowDialog();
+        }
     }
 }
