@@ -36,6 +36,7 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
         private void FiltrirajStudenteStipendije()
         {
             var query = db.StudentiStipendijeBrojIndeksa
+                //.AsNoTracking()
                 .Include(ss => ss.Student)
                 .Include(ss => ss.StipendijaGodina)
                 .ThenInclude(sg => sg.Stipendija)
@@ -128,5 +129,32 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 }
             }
         }
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            var novaForma = new frmStipendijaAddEditBrojIndeksa();
+            if (novaForma.ShowDialog() == DialogResult.OK)
+                FiltrirajStudenteStipendije();
+        }
+
+
+        private void dgvStudentiStipendije_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            // ✅ RE-FETCH the clicked row’s data from DB fresh (so the child can save it correctly)
+            var id = (dgvStudentiStipendije.Rows[e.RowIndex].DataBoundItem as StudentStipendijaBrojIndeksa).Id;
+            var freshModel = db.StudentiStipendijeBrojIndeksa
+                .Include(ss => ss.StipendijaGodina)
+                .Include(ss => ss.Student)
+                .FirstOrDefault(ss => ss.Id == id);
+
+            var forma = new frmStipendijaAddEditBrojIndeksa(freshModel);
+
+            if (forma.ShowDialog() == DialogResult.OK)
+                FiltrirajStudenteStipendije();
+        }
+
+
     }
 }

@@ -14,5 +14,12 @@ namespace DLWMS.Data.IspitBrojIndeksa
         public int Iznos { get; set; }
 
         public StipendijaBrojIndeksa Stipendija { get; set; }
+
+
+        public override string ToString()
+        {
+            return Stipendija?.Naziv ?? $"Stipendija #{Id}";
+        }
+
     }
 }

@@ -12,6 +12,12 @@
         public int GradId { get; set; }
         public int SpolId { get; set; }
         public byte[] Slika { get; set; }
-        public bool Aktivan { get; set; }      
+        public bool Aktivan { get; set; }
+
+        public string Prikaz
+        {
+            get => $"{BrojIndeksa} {Ime} {Prezime}";
+        }
+
     }
 }
