@@ -27,11 +27,33 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
         private void frmPretragaBrojIndeksa_Load(object sender, EventArgs e)
         {
-            cmbStipendija.UcitajPodatke(db.StipendijeBrojIndeksa.ToList());
-            cmbStipendija.SelectedIndex = -1;
-
+            cmbGodina.SelectedIndex = -1;
+            UcitajStipendijeZaGodinu();
             FiltrirajStudenteStipendije();
         }
+
+
+        private void UcitajStipendijeZaGodinu()
+        {
+            if (cmbGodina.SelectedItem == null)
+                return;
+
+            int odabranaGodina = int.Parse(cmbGodina.SelectedItem.ToString()!);
+
+            var stipendije = db.StipendijeGodineBrojIndeksa
+                .Include(sg => sg.Stipendija)
+                .Where(sg => sg.Godina == odabranaGodina && sg.Aktivna == true)
+                .Select(sg => sg.Stipendija)
+                .Distinct()
+                .ToList();
+
+            //cmbStipendija.DataSource = stipendije;
+            //cmbStipendija.DisplayMember = "Naziv";
+            //cmbStipendija.ValueMember = "Id";
+            cmbStipendija.UcitajPodatke(stipendije);
+            cmbStipendija.SelectedIndex = -1;
+        }
+
 
         private void FiltrirajStudenteStipendije()
         {
@@ -105,6 +127,7 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
         private void cmbGodina_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            UcitajStipendijeZaGodinu();
             FiltrirajStudenteStipendije();
         }
 
