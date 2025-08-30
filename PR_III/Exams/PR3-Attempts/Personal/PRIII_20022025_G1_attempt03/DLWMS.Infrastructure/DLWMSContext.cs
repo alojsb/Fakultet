@@ -1,5 +1,5 @@
 ﻿using DLWMS.Data;
-
+using DLWMS.Data.IspitBrojIndeksa;
 using Microsoft.EntityFrameworkCore;
 
 using System.Configuration;
@@ -16,6 +16,8 @@ namespace DLWMS.Infrastructure
         }
 
         public DbSet<Student> Studenti { get; set; }
-
+        public DbSet<StipendijaBrojIndeksa> StipendijeBrojIndeksa { get; set; }
+        public DbSet<StipendijaGodinaBrojIndeksa> StipendijeGodineBrojIndeksa { get; set; }
+        public DbSet<StudentStipendijaBrojIndeksa> StudentiStipendijeBrojIndeksa { get; set; }
     }
 }
