@@ -112,6 +112,7 @@
             dgvStudentiStipendije.ReadOnly = true;
             dgvStudentiStipendije.Size = new Size(776, 371);
             dgvStudentiStipendije.TabIndex = 3;
+            dgvStudentiStipendije.CellContentClick += dgvStudentiStipendije_CellContentClick;
             dgvStudentiStipendije.CellFormatting += dgvStudentiStipendije_CellFormatting;
             // 
             // ImePrezime
@@ -124,11 +125,11 @@
             // 
             // Godina
             // 
-            Godina.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Godina.DataPropertyName = "Godina";
             Godina.HeaderText = "Godina";
             Godina.Name = "Godina";
             Godina.ReadOnly = true;
+            Godina.Width = 122;
             // 
             // Stipendija
             // 
@@ -140,19 +141,19 @@
             // 
             // MjesecniIznos
             // 
-            MjesecniIznos.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             MjesecniIznos.DataPropertyName = "MjesecniIznos";
             MjesecniIznos.HeaderText = "Mjesečni Iznos";
             MjesecniIznos.Name = "MjesecniIznos";
             MjesecniIznos.ReadOnly = true;
+            MjesecniIznos.Width = 123;
             // 
             // Ukupno
             // 
-            Ukupno.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Ukupno.DataPropertyName = "Ukupno";
             Ukupno.HeaderText = "Ukupno";
             Ukupno.Name = "Ukupno";
             Ukupno.ReadOnly = true;
+            Ukupno.Width = 122;
             // 
             // Ukloni
             // 
@@ -161,6 +162,7 @@
             Ukloni.HeaderText = "";
             Ukloni.Name = "Ukloni";
             Ukloni.ReadOnly = true;
+            Ukloni.Text = "Ukloni";
             Ukloni.UseColumnTextForButtonValue = true;
             // 
             // frmPretragaBrojIndeksa

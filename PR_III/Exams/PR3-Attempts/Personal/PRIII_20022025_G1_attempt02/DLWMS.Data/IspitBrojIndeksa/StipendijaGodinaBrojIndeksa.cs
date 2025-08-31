@@ -11,6 +11,7 @@ namespace DLWMS.Data.IspitBrojIndeksa
         public int Id { get; set; }
         public int StipendijaId { get; set; }
         public int Godina {  get; set; }
+        public int MjesecniIznos { get; set; }
 
         public StipendijaBrojIndeksa Stipendija { get; set; }
     }

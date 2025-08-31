@@ -29,6 +29,7 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
         private void frmPretragaBrojIndeksa_Load(object sender, EventArgs e)
         {
+            cmbGodina.SelectedIndex = 0;
             UcitajStipendije();
             UcitajStudenteStipendije();
         }
@@ -52,44 +53,68 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
 
         private void UcitajStudenteStipendije()
         {
-            if (cmbGodina.SelectedItem == null || cmbStipendija.SelectedItem == null)
-                return;
-
-            int odabranaGodina = int.Parse(cmbGodina.SelectedItem.ToString()!);
-            var odabranaStipendija = cmbStipendija.SelectedItem as StipendijaBrojIndeksa;
-
-            if (odabranaStipendija == null)
-                return;
-
             var query = _dbContext.StudentiStipendijeBrojIndeksa
                 .Include(ss => ss.StipendijaGodina)
                     .ThenInclude(sg => sg.Stipendija)
                 .Include(ss => ss.Student)
-                .Where(ss =>
-                    ss.StipendijaGodina.Godina == odabranaGodina &&
-                    ss.StipendijaGodina.Stipendija.Id == odabranaStipendija.Id)
-                .ToList();
+                .AsQueryable();
 
-            dgvStudentiStipendije.DataSource = query;
+            if (cmbGodina.SelectedItem != null)
+            {
+                query = query.Where(ss => ss.StipendijaGodina.Godina == int.Parse(cmbGodina.SelectedItem.ToString()!));
+            }
+
+            if (cmbStipendija.SelectedValue != null)
+            {
+                query = query.Where(ss => ss.StipendijaGodina.StipendijaId == (int)cmbStipendija.SelectedValue);
+            }
+
+            var studentiStipendije = query.ToList();
+
+            this.Text = $"Broj prokazanih studenata: {studentiStipendije.Count()}";
+
+            dgvStudentiStipendije.DataSource = studentiStipendije;
+
+            if (studentiStipendije.Count() == 0)
+            {
+                MessageBox.Show($"U bazi nisu evidentirani studenti kojima je u {cmbGodina.Text}. godini dodijeljena {cmbStipendija.Text} stipendija");
+            }
         }
 
         private void dgvStudentiStipendije_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            var StudentStipendija = dgvStudentiStipendije.Rows[e.RowIndex].DataBoundItem as StudentStipendijaBrojIndeksa;
+            var studentStipendija = dgvStudentiStipendije.Rows[e.RowIndex].DataBoundItem as StudentStipendijaBrojIndeksa;
             var kolona = dgvStudentiStipendije.Columns[e.ColumnIndex].Name;
 
             if (kolona == "Stipendija")
             {
-                e.Value = StudentStipendija.StipendijaGodina.Stipendija.Naziv;
+                e.Value = studentStipendija.StipendijaGodina.Stipendija.Naziv;
             }
             else if (kolona == "Godina")
             {
-                e.Value = StudentStipendija.StipendijaGodina.Godina;
+                e.Value = studentStipendija.StipendijaGodina.Godina;
             }
             else if (kolona == "ImePrezime")
             {
-                e.Value = $"({StudentStipendija.Student.BrojIndeksa}) {StudentStipendija.Student.Ime} {StudentStipendija.Student.Prezime}";
+                e.Value = $"({studentStipendija.Student.BrojIndeksa}) {studentStipendija.Student.Ime} {studentStipendija.Student.Prezime}";
             }
+            else if (kolona == "MjesecniIznos")
+            {
+                e.Value = studentStipendija.StipendijaGodina.MjesecniIznos;
+            }
+            else if (kolona == "Ukupno")
+            {
+                e.Value = IzracunUkupno(studentStipendija);
+            }
+        }
+
+        private int IzracunUkupno(StudentStipendijaBrojIndeksa ss)
+        {
+            if (ss.StipendijaGodina.Godina == DateTime.Now.Year)
+            {
+                return ss.StipendijaGodina.MjesecniIznos * DateTime.Now.Month;
+            }
+            return ss.StipendijaGodina.MjesecniIznos * 12;
         }
 
         private void cmbGodina_SelectionChangeCommitted(object sender, EventArgs e)
@@ -101,6 +126,23 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
         private void cmbStipendija_SelectionChangeCommitted(object sender, EventArgs e)
         {
             UcitajStudenteStipendije();
+        }
+
+        private void dgvStudentiStipendije_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvStudentiStipendije.Columns[e.ColumnIndex].Name == "Ukloni")
+            {
+                var studentStipendija = dgvStudentiStipendije.Rows[e.RowIndex].DataBoundItem as StudentStipendijaBrojIndeksa;
+
+                var odg = MessageBox.Show("Da li ste sigurni?", "Upit", MessageBoxButtons.YesNo);
+
+                if (odg == DialogResult.Yes)
+                {
+                    _dbContext.StudentiStipendijeBrojIndeksa.Remove(studentStipendija);
+                    _dbContext.SaveChanges();
+                    UcitajStudenteStipendije();
+                }
+            }
         }
     }
 }
