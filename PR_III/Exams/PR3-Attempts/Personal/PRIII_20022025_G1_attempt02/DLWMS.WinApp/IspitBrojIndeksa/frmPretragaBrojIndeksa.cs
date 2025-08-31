@@ -144,5 +144,26 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 }
             }
         }
+
+        private void btnDodajStipendiju_Click(object sender, EventArgs e)
+        {
+            var novaForma = new frmStipendijaAddEditBrojIndeksa(_dbContext);
+            novaForma.ShowDialog();
+            UcitajStudenteStipendije();
+        }
+
+        private void dgvStudentiStipendije_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var studentStipendija = dgvStudentiStipendije.Rows[e.RowIndex].DataBoundItem as StudentStipendijaBrojIndeksa;
+
+                if (studentStipendija == null) return;
+
+                var novaForma = new frmStipendijaAddEditBrojIndeksa(_dbContext, studentStipendija);
+                novaForma.ShowDialog();
+                UcitajStudenteStipendije();
+            }
+        }
     }
 }
