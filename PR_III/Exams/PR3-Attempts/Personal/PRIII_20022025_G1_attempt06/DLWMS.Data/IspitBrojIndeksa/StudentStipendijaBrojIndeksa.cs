@@ -10,9 +10,9 @@ namespace DLWMS.Data.IspitBrojIndeksa
     {
         public int Id { get; set; }
         public int StudentId { get; set; }
-        public int StudentStipendijaId { get; set; }
+        public int StipendijaGodinaId { get; set; }
 
         public Student Student {  get; set; }
-        public StudentStipendijaBrojIndeksa StudentStipendija { get; set; }
+        public StipendijaGodinaBrojIndeksa StipendijaGodina { get; set; }
     }
 }
