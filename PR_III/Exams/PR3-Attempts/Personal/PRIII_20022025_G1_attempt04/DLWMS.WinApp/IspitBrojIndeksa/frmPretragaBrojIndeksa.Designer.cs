@@ -32,8 +32,8 @@
             cmbStipendija = new ComboBox();
             label1 = new Label();
             label2 = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            btnDodajStipendiju = new Button();
+            btnStipendijePoGodinama = new Button();
             dgvStudentiStipendije = new DataGridView();
             ImePrezime = new DataGridViewTextBoxColumn();
             Godina = new DataGridViewTextBoxColumn();
@@ -83,23 +83,24 @@
             label2.TabIndex = 1;
             label2.Text = "Stipendija:";
             // 
-            // button1
+            // btnDodajStipendiju
             // 
-            button1.Location = new Point(535, 30);
-            button1.Name = "button1";
-            button1.Size = new Size(102, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Dodaj stipendiju";
-            button1.UseVisualStyleBackColor = true;
+            btnDodajStipendiju.Location = new Point(535, 30);
+            btnDodajStipendiju.Name = "btnDodajStipendiju";
+            btnDodajStipendiju.Size = new Size(102, 23);
+            btnDodajStipendiju.TabIndex = 2;
+            btnDodajStipendiju.Text = "Dodaj stipendiju";
+            btnDodajStipendiju.UseVisualStyleBackColor = true;
+            btnDodajStipendiju.Click += btnDodajStipendiju_Click;
             // 
-            // button2
+            // btnStipendijePoGodinama
             // 
-            button2.Location = new Point(643, 30);
-            button2.Name = "button2";
-            button2.Size = new Size(145, 23);
-            button2.TabIndex = 2;
-            button2.Text = "Stipendije po godinama";
-            button2.UseVisualStyleBackColor = true;
+            btnStipendijePoGodinama.Location = new Point(643, 30);
+            btnStipendijePoGodinama.Name = "btnStipendijePoGodinama";
+            btnStipendijePoGodinama.Size = new Size(145, 23);
+            btnStipendijePoGodinama.TabIndex = 2;
+            btnStipendijePoGodinama.Text = "Stipendije po godinama";
+            btnStipendijePoGodinama.UseVisualStyleBackColor = true;
             // 
             // dgvStudentiStipendije
             // 
@@ -113,6 +114,7 @@
             dgvStudentiStipendije.Size = new Size(776, 379);
             dgvStudentiStipendije.TabIndex = 3;
             dgvStudentiStipendije.CellContentClick += dgvStudentiStipendije_CellContentClick;
+            dgvStudentiStipendije.CellDoubleClick += dgvStudentiStipendije_CellDoubleClick;
             dgvStudentiStipendije.CellFormatting += dgvStudentiStipendije_CellFormatting;
             // 
             // ImePrezime
@@ -161,8 +163,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(dgvStudentiStipendije);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnStipendijePoGodinama);
+            Controls.Add(btnDodajStipendiju);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(cmbStipendija);
@@ -181,8 +183,8 @@
         private ComboBox cmbStipendija;
         private Label label1;
         private Label label2;
-        private Button button1;
-        private Button button2;
+        private Button btnDodajStipendiju;
+        private Button btnStipendijePoGodinama;
         private DataGridView dgvStudentiStipendije;
         private DataGridViewTextBoxColumn ImePrezime;
         private DataGridViewTextBoxColumn Godina;
