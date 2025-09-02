@@ -165,5 +165,11 @@ namespace DLWMS.WinApp.IspitBrojIndeksa
                 UcitajStudenteStipendije();
             }
         }
+
+        private void btnStipendijePoGodinama_Click(object sender, EventArgs e)
+        {
+            var novaForma = new frmStipendijeBrojIndeksa(_dbContext);
+            novaForma.ShowDialog();
+        }
     }
 }

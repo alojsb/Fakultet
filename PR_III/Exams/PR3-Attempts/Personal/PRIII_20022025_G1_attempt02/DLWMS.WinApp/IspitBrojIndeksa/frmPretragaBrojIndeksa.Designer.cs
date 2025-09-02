@@ -101,6 +101,7 @@
             btnStipendijePoGodinama.TabIndex = 2;
             btnStipendijePoGodinama.Text = "Stipendije po godinama";
             btnStipendijePoGodinama.UseVisualStyleBackColor = true;
+            btnStipendijePoGodinama.Click += btnStipendijePoGodinama_Click;
             // 
             // dgvStudentiStipendije
             // 
