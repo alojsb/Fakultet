@@ -73,6 +73,7 @@
             btnDodajStipendiju.TabIndex = 1;
             btnDodajStipendiju.Text = "Dodaj stipendiju";
             btnDodajStipendiju.UseVisualStyleBackColor = true;
+            btnDodajStipendiju.Click += btnDodajStipendiju_Click;
             // 
             // btnStipendijePoGodinama
             // 
@@ -113,6 +114,7 @@
             dgvStudentiStipendije.Size = new Size(776, 377);
             dgvStudentiStipendije.TabIndex = 3;
             dgvStudentiStipendije.CellContentClick += dgvStudentiStipendije_CellContentClick;
+            dgvStudentiStipendije.CellDoubleClick += dgvStudentiStipendije_CellDoubleClick;
             dgvStudentiStipendije.CellFormatting += dgvStudentiStipendije_CellFormatting;
             // 
             // ImePrezime
